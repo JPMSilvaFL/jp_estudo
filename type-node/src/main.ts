@@ -1,16 +1,17 @@
-import express from 'express';
-const app = express();
-import routes from './routes';
-import * as path from 'path';
-import viteExpress from 'vite-express';
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static(path.resolve(__dirname, 'public')));
-
-
-app.use(routes);
-
-viteExpress.listen(app, 3000, () => {
-    console.log('Acessar http://localhost:3000');
-    console.log('Servidor executando na porta 3000');
-});
+import express from 'express'
+import cors from 'cors'// Porta do servidor
+const PORT = process.env.PORT || 4000// Host do servidor
+const HOSTNAME = process.env.HOSTNAME || 'http://localhost'// App Express
+const app = express()// Endpoint raiz
+app.get('/', (req, res) => {
+    res.send('Bem-vindo!')
+})// Cors
+app.use(cors({
+    origin: ['http://localhost:3000']
+}))// Resposta padrão para quaisquer outras requisições:
+app.use((req, res) => {
+    res.status(404)
+})// Inicia o sevidor
+app.listen(PORT, () => {
+    console.log(`Servidor rodando com sucesso ${HOSTNAME}:${PORT}`)
+})
