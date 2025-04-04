@@ -1,0 +1,15 @@
+C:\Users\supor\jp_estudo\C#\001-csharp\bin\Debug\net9.0\001-csharp.exe
+C:\Users\supor\jp_estudo\C#\001-csharp\bin\Debug\net9.0\001-csharp.deps.json
+C:\Users\supor\jp_estudo\C#\001-csharp\bin\Debug\net9.0\001-csharp.runtimeconfig.json
+C:\Users\supor\jp_estudo\C#\001-csharp\bin\Debug\net9.0\001-csharp.dll
+C:\Users\supor\jp_estudo\C#\001-csharp\bin\Debug\net9.0\001-csharp.pdb
+C:\Users\supor\jp_estudo\C#\001-csharp\obj\Debug\net9.0\001-csharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\supor\jp_estudo\C#\001-csharp\obj\Debug\net9.0\001-csharp.AssemblyInfoInputs.cache
+C:\Users\supor\jp_estudo\C#\001-csharp\obj\Debug\net9.0\001-csharp.AssemblyInfo.cs
+C:\Users\supor\jp_estudo\C#\001-csharp\obj\Debug\net9.0\001-csharp.csproj.CoreCompileInputs.cache
+C:\Users\supor\jp_estudo\C#\001-csharp\obj\Debug\net9.0\001-csharp.sourcelink.json
+C:\Users\supor\jp_estudo\C#\001-csharp\obj\Debug\net9.0\001-csharp.dll
+C:\Users\supor\jp_estudo\C#\001-csharp\obj\Debug\net9.0\refint\001-csharp.dll
+C:\Users\supor\jp_estudo\C#\001-csharp\obj\Debug\net9.0\001-csharp.pdb
+C:\Users\supor\jp_estudo\C#\001-csharp\obj\Debug\net9.0\001-csharp.genruntimeconfig.cache
+C:\Users\supor\jp_estudo\C#\001-csharp\obj\Debug\net9.0\ref\001-csharp.dll
