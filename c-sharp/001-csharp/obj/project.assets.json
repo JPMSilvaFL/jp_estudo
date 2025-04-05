@@ -8,19 +8,19 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\supor\\.nuget\\packages\\": {}
+    "/home/mota/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\supor\\jp_estudo\\C#\\001-csharp\\001-csharp.csproj",
+      "projectUniqueName": "/home/mota/jp_estudo/C#/001-csharp/001-csharp.csproj",
       "projectName": "001-csharp",
-      "projectPath": "C:\\Users\\supor\\jp_estudo\\C#\\001-csharp\\001-csharp.csproj",
-      "packagesPath": "C:\\Users\\supor\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\supor\\jp_estudo\\C#\\001-csharp\\obj\\",
+      "projectPath": "/home/mota/jp_estudo/C#/001-csharp/001-csharp.csproj",
+      "packagesPath": "/home/mota/.nuget/packages/",
+      "outputPath": "/home/mota/jp_estudo/C#/001-csharp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\supor\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/mota/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -65,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/mota/.dotnet/sdk/9.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
