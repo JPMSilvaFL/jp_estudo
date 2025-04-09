@@ -1,9 +1,0 @@
-﻿namespace Calculator
-{
-	class Calculator
-	{
-    
-}
-
-}
-
