@@ -1,0 +1,15 @@
+C:\Users\supor\jp_estudo\c-sharp\Teste\obj\Debug\net9.0\Teste.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\supor\jp_estudo\c-sharp\Teste\obj\Debug\net9.0\Teste.AssemblyInfoInputs.cache
+C:\Users\supor\jp_estudo\c-sharp\Teste\obj\Debug\net9.0\Teste.AssemblyInfo.cs
+C:\Users\supor\jp_estudo\c-sharp\Teste\obj\Debug\net9.0\Teste.csproj.CoreCompileInputs.cache
+C:\Users\supor\jp_estudo\c-sharp\Teste\obj\Debug\net9.0\Teste.sourcelink.json
+C:\Users\supor\jp_estudo\c-sharp\Teste\bin\Debug\net9.0\Teste.exe
+C:\Users\supor\jp_estudo\c-sharp\Teste\bin\Debug\net9.0\Teste.deps.json
+C:\Users\supor\jp_estudo\c-sharp\Teste\bin\Debug\net9.0\Teste.runtimeconfig.json
+C:\Users\supor\jp_estudo\c-sharp\Teste\bin\Debug\net9.0\Teste.dll
+C:\Users\supor\jp_estudo\c-sharp\Teste\bin\Debug\net9.0\Teste.pdb
+C:\Users\supor\jp_estudo\c-sharp\Teste\obj\Debug\net9.0\Teste.dll
+C:\Users\supor\jp_estudo\c-sharp\Teste\obj\Debug\net9.0\refint\Teste.dll
+C:\Users\supor\jp_estudo\c-sharp\Teste\obj\Debug\net9.0\Teste.pdb
+C:\Users\supor\jp_estudo\c-sharp\Teste\obj\Debug\net9.0\Teste.genruntimeconfig.cache
+C:\Users\supor\jp_estudo\c-sharp\Teste\obj\Debug\net9.0\ref\Teste.dll

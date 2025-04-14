@@ -1,6 +1,0 @@
-﻿<wpf:ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                        xmlns:s="clr-namespace:System;assembly=mscorlib"
-                        xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                        xml:space="preserve">
-	<s:Boolean
-            x:Key="/Default/UnloadedProject/UnloadedProjects/=4b2f067d_002D69c8_002Dbc6d_002D0c1b_002D7c40f307cb3c_0023001_002Dcsharp/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
