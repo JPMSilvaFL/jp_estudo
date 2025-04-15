@@ -1,6 +1,8 @@
-﻿namespace Persons;
+﻿using Teste.Agendamento.Notifications;
 
-public abstract class Person{
+namespace Teste.Agendamento;
+
+public abstract class Person : Base{
     public string id { get; }
     public string cpf { get; set; }
     public string nome { get; set; }
@@ -14,12 +16,18 @@ public abstract class Person{
     public Person(string cpf, string nome, string email, string contato, string endereco) {
         id = Guid.NewGuid().ToString("N");
         this.cpf = verificaCPF(cpf);
-        this.nome = verificaNome(nome);
-        this.email = email;
-        this.contato = contato;
-        this.endereco = endereco;
-        updatedAt = DateTime.Now;
-        isActive = true;
+
+        if (!verificaNome(nome)) {
+            this.nome = null;
+        }
+        else {
+            this.nome = nome;
+            this.email = email;
+            this.contato = contato;
+            this.endereco = endereco;
+            updatedAt = DateTime.Now;
+            isActive = true;
+        }
     }
 
     private string verificaCPF(string cpf) {
@@ -30,9 +38,12 @@ public abstract class Person{
         return cpf;
     }
 
-    private string verificaNome(string nome) {
-        if (nome.Length <= 10)
-            throw new Exception("Nome precisa de mais de 10 letras.");
-        return nome;
+
+    private bool verificaNome(string nome) {
+        if (nome.Length > 10)
+            return true;
+        else
+            AddNotification(new Notification("Erro", "Nome precisa de ter mais que 10 caracteres"));
+        return false;
     }
 }
