@@ -8,7 +8,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Agendamento\Validacoe\"/>
+        <Folder Include="Agendamento\Validacoe\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="dapper" Version="2.1.66" />
+      <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
     </ItemGroup>
 
 </Project>

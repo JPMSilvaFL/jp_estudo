@@ -3,9 +3,9 @@
 namespace Teste.Agendamento;
 
 public abstract class Person : Base{
-    public string id { get; }
+    public Guid id { get; }
     public string cpf { get; set; }
-    public string nome { get; set; }
+    public string full_name { get; set; }
     public string email { get; set; }
     public string contato { get; set; }
     public bool isActive { get; set; }
@@ -14,14 +14,14 @@ public abstract class Person : Base{
     public DateTime updatedAt { get; set; }
 
     public Person(string cpf, string nome, string email, string contato, string endereco) {
-        id = Guid.NewGuid().ToString("N");
+        id = Guid.NewGuid();
         this.cpf = verificaCPF(cpf);
 
         if (!verificaNome(nome)) {
-            this.nome = null;
+            full_name = null;
         }
         else {
-            this.nome = nome;
+            full_name = nome;
             this.email = email;
             this.contato = contato;
             this.endereco = endereco;

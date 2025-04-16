@@ -1,19 +1,17 @@
-﻿using Teste.Agendamento.Enums;
-
-namespace Teste.Agendamento;
+﻿namespace Teste.Agendamento;
 
 public class Funcionario : Person{
-    public string id { get; set; }
-    public ECargos cargo { get; set; }
-    public float salario { get; set; }
-    public DateOnly createdAt { get; }
+    public Guid id { get; set; } // Alterar para guid
+    public int idCargo { get; set; }
+    public DateOnly dataDeIngresso { get; }
 
-    public Funcionario(string cpf, string nome, string email, string contato, string endereco, ECargos cargo,
-                       float salario) : base(cpf, nome,
-        email, contato, endereco) {
-        id = Guid.NewGuid().ToString("N");
-        this.cargo = cargo;
-        this.salario = salario;
-        createdAt = DateOnly.FromDateTime(DateTime.Now);
+    public Funcionario(string cpf, string nome, string email, string contato, string endereco, int cargo) : base(cpf,
+        nome,
+        email,
+        contato,
+        endereco) {
+        id = Guid.NewGuid();
+        idCargo = cargo;
+        dataDeIngresso = DateOnly.FromDateTime(DateTime.Now);
     }
 }
