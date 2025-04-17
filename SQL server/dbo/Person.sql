@@ -2,7 +2,7 @@ create table Person
 (
     id        uniqueidentifier   not null
         primary key,
-    cpf       varchar            not null
+    cpf       varchar(11)        not null
         unique,
     full_name nvarchar(100)      not null,
     email     nvarchar(100)      not null,
