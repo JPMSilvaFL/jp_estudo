@@ -1,17 +1,16 @@
 ﻿namespace Teste.Agendamento;
 
-public class Funcionario : Person{
-    public Guid id { get; set; } // Alterar para guid
-    public int idCargo { get; set; }
-    public DateOnly dataDeIngresso { get; }
+public class Funcionario {
+	public Guid Id { get; set; }
+	public Cargos Cargo { get; set; }
+	public Person Pessoa { get; set; }
+	public DateTime DataDeIngresso { set; get; }
 
-    public Funcionario(string cpf, string nome, string email, string contato, string endereco, int cargo) : base(cpf,
-        nome,
-        email,
-        contato,
-        endereco) {
-        id = Guid.NewGuid();
-        idCargo = cargo;
-        dataDeIngresso = DateOnly.FromDateTime(DateTime.Now);
-    }
+	public Funcionario(Cargos cargo, Person pessoa)
+	{
+		Id = Guid.NewGuid();
+		Cargo = cargo;
+		Pessoa = pessoa;
+		DataDeIngresso = DateTime.Now;
+	}
 }

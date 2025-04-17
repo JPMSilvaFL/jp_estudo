@@ -51,6 +51,10 @@
             "dapper": {
               "target": "Package",
               "version": "[2.1.66, )"
+            },
+            "dapper.contrib": {
+              "target": "Package",
+              "version": "[2.0.78, )"
             }
           },
           "imports": [

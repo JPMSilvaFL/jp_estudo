@@ -3,136 +3,189 @@ using static System.Threading.Thread;
 using Teste.Agendamento;
 using System.Data.SqlClient;
 using Dapper;
-using Teste.Agendamento.Enums;
-using Teste.Agendamento.Notifications;
 
 
 namespace Teste;
 
-internal class Teste{
-    private static void Main(string[] args) {
-        var x = 0;
+internal class Teste {
+	private static void Main(string[] args)
+	{
+		// SalvarClienteLista();
+		SalvarFuncionarioLista();
+	}
 
-        do {
-            Console.Clear();
-            Console.WriteLine("Selecione uma das opções abaixo:");
-            Console.WriteLine("0- Sair da aplicação.");
-            Console.WriteLine("1- Cadastrar Cliente.");
-            Console.WriteLine("2- Cadastrar Funcionario.");
-            x = int.Parse(Console.ReadLine());
-            if (x < 0 || x > 9) Console.WriteLine("Preencha um valor válido!");
+	public static void SalvarCliente()
+	{
+		var pessoa = new Person("04258181102", "joao pedro mota", "joao@gmail.com", "64993140912", "adadmaljdkma");
+		var client = new Cliente(pessoa);
 
-            if (x == 1) {
-                Console.WriteLine("Digite o nome do cliente: ");
-                var nome = Console.ReadLine();
-                Console.WriteLine("Digite o email: ");
-                var email = Console.ReadLine();
-                Console.WriteLine("Digite o cpf: ");
-                var cpf = Console.ReadLine();
-                Console.WriteLine("Digite o telefone: ");
-                var contato = Console.ReadLine();
-                Console.WriteLine("Digite o endereco: ");
-                var endereco = Console.ReadLine();
 
-                var client = new Cliente(cpf, nome, email, contato, endereco);
-                Console.WriteLine("Deseja salvar o cliente?");
-                Console.WriteLine("1- Sim.");
-                Console.WriteLine("2- Não.");
-                var i = int.Parse(Console.ReadLine());
-                if (i == 1) {
-                    var connectionString =
-                        "Server=localhost,1433;Database=Curso;User Id=sa;Password=152369Jp@;";
+		Console.Clear();
 
-                    using (var connection = new SqlConnection(connectionString)) {
-                        connection.Open();
 
-                        // Gera um GUID para o Person (já que usamos NEWSEQUENTIALID no banco, mas queremos controlar o ID aqui)
+		var connectionString = "Server=localhost,1433;Database=Curso;User Id=sa;Password=152369Jp@;";
 
-                        // Inserção na tabela Person
-                        var insertPersonSql = @"
+		using (var connection = new SqlConnection(connectionString)) {
+			connection.Open();
+
+			var insertPersonSql = @"
                 INSERT INTO Person (id, cpf, full_name, email, contato, endereco, createdAt)
-                VALUES (@Id,@cpf, @FullName, @Email, @Contato, @Endereco, @CreatedAt);
-            ";
+                VALUES (@Id,@Cpf, @FullName, @Email, @Contato, @Endereco, @CreatedAt);";
 
-                        connection.Execute(insertPersonSql, new {
-                            Id = client.id,
-                            cpf = int.Parse(client.cpf),
-                            FullName = client.full_name,
-                            Email = client.email,
-                            Contato = client.contato,
-                            Endereco = client.endereco,
-                            CreatedAt = DateTime.Now
-                        });
+			connection.Execute(insertPersonSql,
+				new {
+					pessoa.Id,
+					pessoa.Cpf,
+					pessoa.FullName,
+					pessoa.Email,
+					pessoa.Contato,
+					pessoa.Endereco,
+					pessoa.CreatedAt
+				});
 
-                        // Inserção na tabela Cliente usando o ID recém-gerado
-                        var insertClienteSql = "INSERT INTO Cliente (idPerson) VALUES (@IdPerson);";
+			var insertClienteSql = "INSERT INTO Cliente (id, idPerson) VALUES (@Id, @IdPerson);";
 
-                        connection.Execute(insertClienteSql, new { IdPerson = client.id });
+			connection.Execute(insertClienteSql,
+				new {
+					client.Id,
+					IdPerson = pessoa.Id
+				});
 
-                        Console.WriteLine("Inserção concluída com sucesso!");
-                    }
-                }
+			Console.WriteLine(
+				"Inserção concluída com sucesso!");
+		}
+	}
 
-                Console.WriteLine(client.cpf);
-                Console.WriteLine(client.createdAt);
-                Console.WriteLine(client.id);
-                Sleep(5000);
-            }
-
-            if (x == 2) {
-                Console.WriteLine("Digite o nome do Funcionario: ");
-                var nome = Console.ReadLine();
-                Console.WriteLine("Digite o email: ");
-                var email = Console.ReadLine();
-                Console.WriteLine("Digite o cpf: ");
-                var cpf = Console.ReadLine();
-                Console.WriteLine("Digite o telefone: ");
-                var contato = Console.ReadLine();
-                Console.WriteLine("Digite o endereco: ");
-                var endereco = Console.ReadLine();
-                Console.WriteLine("Selecione um cargo:");
-                var idCargo = int.Parse(Console.ReadLine());
+	public static void SalvarClienteLista()
+	{
+		var pessoas = new List<Person> {
+			new("04258181102", "joao pedro", "joao@gmail.com", "9651412351", "dbadbakhj"),
+			new("15796314796", "joao mota", "pedro@gmail.com", "465845215", "ajdnadja"),
+			new("15796314797", "luiz", "luiz@gmail.com", "465845215", "ajdnadja"),
+			new("15796314798", "lucas", "lucas@gmail.com", "465845215", "ajdnadja"),
+			new("15796314799", "carlos", "carlos@gmail.com", "465845215", "ajdnadja"),
+			new("15796314710", "maria", "maria@gmail.com", "465845215", "ajdnadja"),
+			new("15796314755", "naire", "naire@gmail.com", "465845215", "ajdnadja")
+		};
+		var clientes = new List<Cliente>();
+		foreach (var pessoa in pessoas) clientes.Add(new Cliente(pessoa));
 
 
-                var funcionario = new Funcionario(cpf, nome, email, contato, endereco, idCargo);
+		var connectionString = "Server=localhost,1433;Database=Curso;User Id=sa;Password=152369Jp@;";
 
-                Console.WriteLine("Deseja salvar funcionário?");
-                Console.WriteLine("1- Sim.");
-                Console.WriteLine("2- Não.");
-                var i = int.Parse(Console.ReadLine());
-                if (i == 1) {
-                    var connectionString =
-                        "Server=localhost,1433;Database=servidorAprendizado;User Id=sa;Password=152369Jp@;";
+		var insertPersonSql = @"
+                INSERT INTO Person (id, cpf, full_name, email, contato, endereco, createdAt)
+                VALUES (@Id,@Cpf, @FullName, @Email, @Contato, @Endereco, @CreatedAt);";
 
-                    using (var connection = new SqlConnection(connectionString)) {
-                        connection.Open();
+		var insertClienteSql = "INSERT INTO Cliente (id, idPerson) VALUES (@Id, @IdPerson);";
 
-                        // Gera um GUID para o Person (já que usamos NEWSEQUENTIALID no banco, mas queremos controlar o ID aqui)
+		using (var connection = new SqlConnection(connectionString)) {
+			connection.Open();
+			foreach (var cliente in clientes) {
+				connection.Execute(insertPersonSql,
+					new {
+						cliente.Pessoa.Id,
+						cliente.Pessoa.Cpf,
+						cliente.Pessoa.FullName,
+						cliente.Pessoa.Email,
+						cliente.Pessoa.Contato,
+						cliente.Pessoa.Endereco,
+						cliente.Pessoa.CreatedAt
+					});
+				connection.Execute(insertClienteSql,
+					new {
+						cliente.Id,
+						IdPerson = cliente.Pessoa.Id
+					});
+			}
 
-                        // Inserção na tabela Person
-                        var insertPersonSql = @"
-                INSERT INTO Person (id, full_name, email, contato, endereco, createdAt)
-                VALUES (@Id, @FullName, @Email, @Contato, @Endereco, @CreatedAt);
-            ";
+			Console.WriteLine("Inserção concluída com sucesso!");
+		}
+	}
 
-                        connection.Execute(insertPersonSql, new {
-                            Id = funcionario.id,
-                            FullName = funcionario.full_name,
-                            Email = funcionario.email,
-                            Contato = funcionario.contato,
-                            Endereco = funcionario.endereco,
-                            CreatedAt = DateTime.Now
-                        });
+	public static void SalvarCargoLista()
+	{
+		var cargos = new List<Cargos> {
+			new("Medico", "Atender paciente", 5000.01),
+			new("Atendente", "Atender paciente", 5000.01),
+			new("Limpeza", "Atender paciente", 5000.01),
+			new("Contador", "Atender paciente", 5000.01),
+			new("Recepcionista", "Atender paciente", 5000.01)
+		};
+		var connectionString = "Server=localhost,1433;Database=Curso;User Id=sa;Password=152369Jp@;";
 
-                        // Inserção na tabela Cliente usando o ID recém-gerado
-                        var insertClienteSql = "INSERT INTO Cliente (idPerson) VALUES (@IdPerson);";
+		var insertCargosSql = @"
+                INSERT INTO Cargos (id, nome, descricao, salario)
+                VALUES (@Id,@Nome, @Descricao, @Salario);";
 
-                        connection.Execute(insertClienteSql, new { IdPerson = funcionario.id });
 
-                        Console.WriteLine("Inserção concluída com sucesso!");
-                    }
-                }
-            }
-        } while (x != 0);
-    }
+		using (var connection = new SqlConnection(connectionString)) {
+			connection.Open();
+			foreach (var cargo in cargos)
+				connection.Execute(insertCargosSql,
+					new {
+						cargo.Id,
+						cargo.Nome,
+						cargo.Descricao,
+						cargo.Salario
+					});
+
+			Console.WriteLine("Inserção concluída com sucesso!");
+		}
+	}
+
+	public static void SalvarFuncionarioLista()
+	{
+		var connectionString = "Server=localhost,1433;Database=Curso;User Id=sa;Password=152369Jp@;";
+
+		var cargos = new List<Cargos>();
+		var pessoas = new List<Person>();
+		using (var connection = new SqlConnection(connectionString)) {
+			connection.Open();
+			pessoas = connection
+				.Query<Person>(
+					"SELECT id as Id, cpf as Cpf, full_name as FullName, email as Email, contato as Contato, isActive as IsActive, endereco as Endereco, createdAt as CreatedAt, updatedAt as UpdatedAt FROM Person;")
+				.Select(row => new Person() {
+					Id = row.Id,
+					Cpf = row.Cpf,
+					FullName = row.FullName,
+					Email = row.Email,
+					Contato = row.Contato,
+					IsActive = row.IsActive,
+					Endereco = row.Endereco,
+					CreatedAt = row.CreatedAt,
+					UpdatedAt = row.UpdatedAt
+				})
+				.ToList();
+			cargos = connection.Query<Cargos>("Select * from Cargos ")
+				.Select(rows => new Cargos() {
+					Id = rows.Id,
+					Nome = rows.Nome,
+					Descricao = rows.Descricao,
+					Salario = rows.Salario
+				}).ToList();
+		}
+
+		var funcionarios = new List<Funcionario>();
+
+		for (var i = 0; i < cargos.Count; i++) funcionarios.Add(new Funcionario(cargos[i], pessoas[i]));
+
+		var insertFuncionariosSql = @"
+		              INSERT INTO Funcionarios (id, idPerson, idCargo, dataDeIngresso)
+		              VALUES (@Id,@IdPessoa, @IdCargo, @DataDeIngresso);";
+
+		using (var connection = new SqlConnection(connectionString)) {
+			connection.Open();
+			foreach (var funcionario in funcionarios)
+				connection.Execute(insertFuncionariosSql,
+					new {
+						funcionario.Id,
+						IdPessoa = funcionario.Pessoa.Id,
+						IdCargo = funcionario.Cargo.Id,
+						funcionario.DataDeIngresso
+					});
+
+			Console.WriteLine("Inserção concluída com sucesso!");
+		}
+	}
 }

@@ -1,6 +1,12 @@
 ﻿namespace Teste.Agendamento;
 
-internal class Cliente : Person{
-    public Cliente(string cpf, string nome, string email, string contato, string endereco) : base(cpf, nome, email,
-        contato, endereco) { }
+internal class Cliente {
+	public Guid Id { get; set; }
+	public Person Pessoa { get; set; }
+
+	public Cliente(Person pessoa)
+	{
+		Id = Guid.NewGuid();
+		Pessoa = pessoa;
+	}
 }
