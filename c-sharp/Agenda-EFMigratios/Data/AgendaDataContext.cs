@@ -16,7 +16,8 @@ public class AgendaDataContext : DbContext {
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		modelBuilder.ApplyConfiguration(new PessoaMap());
 		modelBuilder.Ignore<Notification>();
+		modelBuilder.ApplyConfiguration(new PessoaMap());
+		modelBuilder.ApplyConfiguration(new ClienteMap());
 	}
 }
