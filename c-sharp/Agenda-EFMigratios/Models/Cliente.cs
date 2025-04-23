@@ -12,6 +12,7 @@ public class Cliente {
 	{
 		Id = Guid.NewGuid();
 		Pessoa = pessoa;
-		CreatedAt = DateTime.Now;
+		CreatedAt = DateTime.UtcNow;
+		PessoaId = pessoa.Id;
 	}
 }

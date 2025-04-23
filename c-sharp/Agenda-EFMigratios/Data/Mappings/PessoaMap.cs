@@ -61,7 +61,6 @@ public class PessoaMap : IEntityTypeConfiguration<Pessoa> {
 
 		builder.Property(p => p.UpdatedAt)
 			.HasColumnName("UpdatedAt")
-			.HasColumnType("datetime")
-			.IsRequired();
+			.HasColumnType("datetime");
 	}
 }

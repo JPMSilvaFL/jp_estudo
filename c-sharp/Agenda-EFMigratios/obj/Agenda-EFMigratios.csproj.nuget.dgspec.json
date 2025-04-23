@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\supor\\jp_estudo\\c-sharp\\Agenda-EFMigratios\\Agenda-EFMigratios.csproj": {}
+    "C:\\Users\\joaop\\jp_estudo\\c-sharp\\Agenda-EFMigratios\\Agenda-EFMigratios.csproj": {}
   },
   "projects": {
-    "C:\\Users\\supor\\jp_estudo\\c-sharp\\Agenda-EFMigratios\\Agenda-EFMigratios.csproj": {
+    "C:\\Users\\joaop\\jp_estudo\\c-sharp\\Agenda-EFMigratios\\Agenda-EFMigratios.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\supor\\jp_estudo\\c-sharp\\Agenda-EFMigratios\\Agenda-EFMigratios.csproj",
+        "projectUniqueName": "C:\\Users\\joaop\\jp_estudo\\c-sharp\\Agenda-EFMigratios\\Agenda-EFMigratios.csproj",
         "projectName": "Agenda-EFMigratios",
-        "projectPath": "C:\\Users\\supor\\jp_estudo\\c-sharp\\Agenda-EFMigratios\\Agenda-EFMigratios.csproj",
-        "packagesPath": "C:\\Users\\supor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\supor\\jp_estudo\\c-sharp\\Agenda-EFMigratios\\obj\\",
+        "projectPath": "C:\\Users\\joaop\\jp_estudo\\c-sharp\\Agenda-EFMigratios\\Agenda-EFMigratios.csproj",
+        "packagesPath": "C:\\Users\\joaop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\joaop\\jp_estudo\\c-sharp\\Agenda-EFMigratios\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\supor\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\joaop\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -75,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

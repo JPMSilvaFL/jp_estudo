@@ -17,7 +17,7 @@ public class FuncionarioMap : IEntityTypeConfiguration<Funcionario> {
 		builder.HasIndex(f => f.Id)
 			.IsUnique();
 
-		builder.HasKey(f => f.PessoaId);
+
 		builder.Property(f => f.PessoaId)
 			.HasColumnName("PessoaId")
 			.HasColumnType("uniqueidentifier")
@@ -36,7 +36,7 @@ public class FuncionarioMap : IEntityTypeConfiguration<Funcionario> {
 		builder.HasOne(f => f.Cargo)
 			.WithMany()
 			.HasForeignKey(f => f.CargoId)
-			.OnDelete(DeleteBehavior.SetNull);
+			.OnDelete(DeleteBehavior.NoAction);
 
 		builder.HasOne(f => f.Pessoa)
 			.WithMany()

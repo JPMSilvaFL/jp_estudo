@@ -22,6 +22,40 @@ namespace Agenda_EFMigratios.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Agenda_EFMigratios.Models.Cargo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar")
+                        .HasColumnName("Descricao");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar")
+                        .HasColumnName("Nome");
+
+                    b.Property<decimal>("Salario")
+                        .HasColumnType("money")
+                        .HasColumnName("Salario");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
+
+                    b.HasIndex("Nome")
+                        .IsUnique();
+
+                    b.ToTable("Cargo", (string)null);
+                });
+
             modelBuilder.Entity("Agenda_EFMigratios.Models.Cliente", b =>
                 {
                     b.Property<Guid>("Id")
@@ -42,6 +76,37 @@ namespace Agenda_EFMigratios.Migrations
                     b.HasIndex("PessoaId");
 
                     b.ToTable("Cliente", (string)null);
+                });
+
+            modelBuilder.Entity("Agenda_EFMigratios.Models.Funcionario", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<Guid>("CargoId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CargoId");
+
+                    b.Property<DateTime>("DataDeIngresso")
+                        .HasColumnType("datetime")
+                        .HasColumnName("DataDeIngresso");
+
+                    b.Property<Guid>("PessoaId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("PessoaId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CargoId");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
+
+                    b.HasIndex("PessoaId");
+
+                    b.ToTable("Funcionario", (string)null);
                 });
 
             modelBuilder.Entity("Agenda_EFMigratios.Models.Pessoa", b =>
@@ -91,7 +156,7 @@ namespace Agenda_EFMigratios.Migrations
                         .HasDefaultValue(true)
                         .HasColumnName("IsActive");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime")
                         .HasColumnName("UpdatedAt");
 
@@ -116,6 +181,25 @@ namespace Agenda_EFMigratios.Migrations
                         .HasForeignKey("PessoaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Pessoa");
+                });
+
+            modelBuilder.Entity("Agenda_EFMigratios.Models.Funcionario", b =>
+                {
+                    b.HasOne("Agenda_EFMigratios.Models.Cargo", "Cargo")
+                        .WithMany()
+                        .HasForeignKey("CargoId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Agenda_EFMigratios.Models.Pessoa", "Pessoa")
+                        .WithMany()
+                        .HasForeignKey("PessoaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cargo");
 
                     b.Navigation("Pessoa");
                 });

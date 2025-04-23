@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Agenda-EFMigratios")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+75e064210e54464cb8c2b570d18c43fb4b5fecd2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91bf1dbd2fe8498d74e4db489b2d5ce8ace8fee7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Agenda-EFMigratios")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Agenda-EFMigratios")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

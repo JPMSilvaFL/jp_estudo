@@ -7,6 +7,10 @@ namespace Agenda_EFMigratios.Data;
 
 public class AgendaDataContext : DbContext {
 	public DbSet<Pessoa> Pessoas { get; set; }
+	public DbSet<Cliente> Clientes { get; set; }
+	public DbSet<Cargo> Cargos { get; set; }
+	public DbSet<Funcionario> Funcionarios { get; set; }
+
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
@@ -19,5 +23,7 @@ public class AgendaDataContext : DbContext {
 		modelBuilder.Ignore<Notification>();
 		modelBuilder.ApplyConfiguration(new PessoaMap());
 		modelBuilder.ApplyConfiguration(new ClienteMap());
+		modelBuilder.ApplyConfiguration(new FuncionarioMap());
+		modelBuilder.ApplyConfiguration(new CargoMap());
 	}
 }

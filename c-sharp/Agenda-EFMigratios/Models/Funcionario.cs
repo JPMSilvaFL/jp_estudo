@@ -8,6 +8,8 @@ public class Funcionario {
 	public Pessoa Pessoa { get; set; }
 	public DateTime DataDeIngresso { set; get; }
 
+	public Funcionario(){}
+
 	public Funcionario(Cargo cargo, Pessoa pessoa)
 	{
 		Id = Guid.NewGuid();

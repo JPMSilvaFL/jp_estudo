@@ -15,8 +15,27 @@ public class CargoMap : IEntityTypeConfiguration<Cargo> {
 			.HasColumnName("Id")
 			.HasColumnType("uniqueidentifier")
 			.IsRequired();
-		builder.HasIndex()
+		builder.HasIndex(c=>c.Id)
 			.IsUnique();
+
+		builder.Property(c => c.Nome)
+			.HasColumnName("Nome")
+			.HasColumnType("nvarchar")
+			.HasMaxLength(30)
+			.IsRequired();
+		builder.HasIndex(c => c.Nome)
+			.IsUnique();
+
+		builder.Property(c => c.Descricao)
+			.HasColumnName("Descricao")
+			.HasColumnType("nvarchar")
+			.HasMaxLength(100)
+			.IsRequired();
+
+		builder.Property(c=>c.Salario)
+			.HasColumnName("Salario")
+			.HasColumnType("money")
+			.IsRequired();
 	}
 }
 

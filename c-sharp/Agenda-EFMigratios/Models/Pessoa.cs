@@ -11,7 +11,7 @@ public class Pessoa : Base {
 	public bool IsActive { get; set; }
 	public string Endereco { get; set; }
 	public DateTime CreatedAt { set; get; }
-	public DateTime UpdatedAt { get; set; }
+	public DateTime? UpdatedAt { get; set; }
 
 	public Pessoa(string cpf, string nome, string email, string contato, string endereco)
 	{
@@ -21,7 +21,7 @@ public class Pessoa : Base {
 		Email = email;
 		Contato = contato;
 		Endereco = endereco;
-		CreatedAt = DateTime.Now;
+		CreatedAt = DateTime.UtcNow;
 		IsActive = true;
 	}
 
