@@ -1,4 +1,4 @@
-﻿namespace Agenda_EFMigratios.Models;
+﻿namespace agenda_api.Models;
 
 public class Funcionario {
 	public Guid Id { get; set; }
@@ -8,7 +8,7 @@ public class Funcionario {
 	public Pessoa Pessoa { get; set; }
 	public DateTime DataDeIngresso { set; get; }
 
-	public Funcionario(){}
+	public Funcionario() { }
 
 	public Funcionario(Cargo cargo, Pessoa pessoa)
 	{

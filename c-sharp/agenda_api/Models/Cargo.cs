@@ -1,4 +1,4 @@
-﻿namespace Agenda_EFMigratios.Models;
+﻿namespace agenda_api.Models;
 
 public class Cargo {
 	public Guid Id { get; set; }

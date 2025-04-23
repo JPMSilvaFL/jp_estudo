@@ -1,6 +1,6 @@
-﻿using Agenda_EFMigratios.Models.Notifications;
+﻿using agenda_api.Models.Notifications;
 
-namespace Agenda_EFMigratios.Models;
+namespace agenda_api.Models;
 
 public class Pessoa : Base {
 	public Guid Id { set; get; }
@@ -13,16 +13,14 @@ public class Pessoa : Base {
 	public DateTime CreatedAt { set; get; }
 	public DateTime? UpdatedAt { get; set; }
 
-	public Pessoa(string cpf, string nome, string email, string contato, string endereco)
+	public Pessoa(string cpf, string fullName, string email, string contato, string endereco)
 	{
-		Id = Guid.NewGuid();
-		Cpf = VerificaCPF(cpf);
-		FullName = nome;
+		if (VerificaCPF(cpf)) Cpf = ConverteCpf(cpf);
+		if (verificaNome(fullName)) FullName = fullName;
 		Email = email;
 		Contato = contato;
 		Endereco = endereco;
 		CreatedAt = DateTime.UtcNow;
-		IsActive = true;
 	}
 
 	public Pessoa() { }
@@ -31,8 +29,8 @@ public class Pessoa : Base {
 		DateTime createdAt, DateTime updatedAt)
 	{
 		Id = id;
-		Cpf = cpf;
-		FullName = fullName;
+		if (VerificaCPF(cpf)) Cpf = ConverteCpf(cpf);
+		if (verificaNome(fullName) == true) FullName = fullName;
 		Email = email;
 		Contato = contato;
 		Endereco = endereco;
@@ -41,23 +39,29 @@ public class Pessoa : Base {
 		UpdatedAt = updatedAt;
 	}
 
-	private string VerificaCPF(string cpf)
+	private string ConverteCpf(string cpf)
 	{
-		if (string.IsNullOrEmpty(cpf))
-			throw new Exception(
-				"Preencha corretamente o Cpf");
-
 		cpf = new string(cpf.Where(char.IsDigit).ToArray());
 		return cpf;
 	}
 
+	private bool VerificaCPF(string cpf)
+	{
+		if (string.IsNullOrEmpty(cpf)) {
+			AddNotification(new Notification("Cpf invalido", "Preencha corretamente o Cpf"));
+			return false;
+		}
+
+		return true;
+	}
+
 	private bool verificaNome(string nome)
 	{
-		if (nome.Length > 10)
-			return true;
-		else
-			AddNotification(new Notification("Erro",
-				"Nome precisa de ter mais que 10 caracteres"));
-		return false;
+		if (nome.Length < 10) {
+			AddNotification(new Notification("Erro", "Nome precisa de ter mais que 10 caracteres"));
+			return false;
+		}
+
+		return true;
 	}
 }

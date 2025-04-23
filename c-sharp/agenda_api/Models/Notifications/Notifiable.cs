@@ -1,4 +1,4 @@
-﻿namespace Agenda_EFMigratios.Models.Notifications;
+﻿namespace agenda_api.Models.Notifications;
 
 public abstract class Notifiable {
 	public List<Notification> Notifications { get; set; }

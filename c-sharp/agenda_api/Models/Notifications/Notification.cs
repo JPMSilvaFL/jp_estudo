@@ -1,4 +1,4 @@
-﻿namespace Agenda_EFMigratios.Models.Notifications;
+﻿namespace agenda_api.Models.Notifications;
 
 public sealed class Notification {
 	public string propriedade { get; set; }

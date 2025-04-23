@@ -1,5 +1,5 @@
-﻿using Agenda_EFMigratios.Models.Notifications;
+﻿using agenda_api.Models.Notifications;
 
-namespace Agenda_EFMigratios.Models;
+namespace agenda_api.Models;
 
 public class Base : Notifiable { }
