@@ -239,19 +239,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\joaop\\.nuget\\packages\\": {}
+    "C:\\Users\\supor\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\joaop\\jp_estudo\\c-sharp\\Teste\\Teste.csproj",
+      "projectUniqueName": "C:\\Users\\supor\\jp_estudo\\c-sharp\\Teste\\Teste.csproj",
       "projectName": "Teste",
-      "projectPath": "C:\\Users\\joaop\\jp_estudo\\c-sharp\\Teste\\Teste.csproj",
-      "packagesPath": "C:\\Users\\joaop\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\joaop\\jp_estudo\\c-sharp\\Teste\\obj\\",
+      "projectPath": "C:\\Users\\supor\\jp_estudo\\c-sharp\\Teste\\Teste.csproj",
+      "packagesPath": "C:\\Users\\supor\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\supor\\jp_estudo\\c-sharp\\Teste\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\joaop\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\supor\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -310,7 +310,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
