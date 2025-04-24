@@ -1,13 +1,11 @@
-﻿using System.Data.Common;
-using agenda_api.Models;
+﻿using agenda_api.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Agenda_EFMigratios.Data.Mappings;
+namespace agenda_api.Data.Mappings;
 
 public class CargoMap : IEntityTypeConfiguration<Cargo> {
-	public void Configure(EntityTypeBuilder<Cargo> builder)
-	{
+	public void Configure(EntityTypeBuilder<Cargo> builder) {
 		builder.ToTable("Cargo");
 
 		builder.HasKey(c => c.Id);

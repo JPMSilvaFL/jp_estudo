@@ -1,6 +1,6 @@
-﻿using agenda_api.Models;
+﻿using agenda_api.Data.Mappings;
+using agenda_api.Models;
 using agenda_api.Models.Notifications;
-using Agenda_EFMigratios.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
 
 namespace agenda_api.Data;

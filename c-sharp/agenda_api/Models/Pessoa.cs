@@ -1,4 +1,5 @@
 ﻿using agenda_api.Models.Notifications;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace agenda_api.Models;
 

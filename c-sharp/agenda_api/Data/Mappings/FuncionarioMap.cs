@@ -2,11 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Agenda_EFMigratios.Data.Mappings;
+namespace agenda_api.Data.Mappings;
 
 public class FuncionarioMap : IEntityTypeConfiguration<Funcionario> {
-	public void Configure(EntityTypeBuilder<Funcionario> builder)
-	{
+	public void Configure(EntityTypeBuilder<Funcionario> builder) {
 		builder.ToTable("Funcionario");
 
 		builder.HasKey(f => f.Id);

@@ -1,5 +1,6 @@
 ﻿using agenda_api.Data;
 using agenda_api.Models;
+using agenda_api.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +9,7 @@ namespace agenda_api.Controllers;
 [Route("cargo")]
 public class CargoController : ControllerBase {
 	[HttpPost("create")]
-	public async Task<IActionResult> Create([FromBody] Cargo cargo, [FromServices] AppDbContext context) {
+	public async Task<IActionResult> Create([FromBody] EditorCargo cargo, [FromServices] AppDbContext context) {
 		var cargoCriado = new Cargo(cargo.Nome, cargo.Descricao, cargo.Salario);
 
 		await context.Cargos.AddAsync(cargoCriado);

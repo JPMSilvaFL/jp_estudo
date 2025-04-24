@@ -2,11 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Agenda_EFMigratios.Data.Mappings;
+namespace agenda_api.Data.Mappings;
 
 public class PessoaMap : IEntityTypeConfiguration<Pessoa> {
-	public void Configure(EntityTypeBuilder<Pessoa> builder)
-	{
+	public void Configure(EntityTypeBuilder<Pessoa> builder) {
 		builder.ToTable("Pessoa");
 
 		builder.HasKey(p => p.Id);

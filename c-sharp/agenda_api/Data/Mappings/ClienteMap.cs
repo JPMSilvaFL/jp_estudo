@@ -2,11 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Agenda_EFMigratios.Data.Mappings;
+namespace agenda_api.Data.Mappings;
 
 public class ClienteMap : IEntityTypeConfiguration<Cliente> {
-	public void Configure(EntityTypeBuilder<Cliente> builder)
-	{
+	public void Configure(EntityTypeBuilder<Cliente> builder) {
 		builder.ToTable("Cliente");
 
 		builder.HasKey(x => x.Id);
