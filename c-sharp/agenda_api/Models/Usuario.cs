@@ -5,6 +5,7 @@ public class Usuario {
 	public string Username { get; set; }
 	public string Password { get; set; }
 	public Guid PessoaId { get; set; }
+	public Pessoa Pessoa { get; set; }
 	public Guid PerfilAcessoId { get; set; }
 	public PerfilAcesso? Acesso { get; set; }
 	private IList<LogAtividade> Log { get; set; } = new List<LogAtividade>();
@@ -12,10 +13,11 @@ public class Usuario {
 
 	public Usuario() { }
 
-	public Usuario(PerfilAcesso perfilAcesso) {
+	public Usuario(PerfilAcesso perfilAcesso, Pessoa pessoa) {
 		Id = Guid.NewGuid();
 		Acesso = perfilAcesso;
 		CreatedAt = DateTime.UtcNow;
+		Pessoa = pessoa;
 	}
 
 	public void AdicionarAtividade(LogAtividade log) {

@@ -21,5 +21,8 @@ public class AppDbContext : DbContext {
 		modelBuilder.ApplyConfiguration(new ClienteMap());
 		modelBuilder.ApplyConfiguration(new FuncionarioMap());
 		modelBuilder.ApplyConfiguration(new CargoMap());
+		modelBuilder.ApplyConfiguration(new PerfilAcessoMap());
+		modelBuilder.ApplyConfiguration(new UsuarioMap());
+		modelBuilder.ApplyConfiguration(new LogAtividadeMap());
 	}
 }

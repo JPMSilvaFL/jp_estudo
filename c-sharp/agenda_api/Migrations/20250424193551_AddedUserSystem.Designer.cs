@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using agenda_api.Data;
 
@@ -10,9 +11,11 @@ using agenda_api.Data;
 namespace agenda_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250424193551_AddedUserSystem")]
+    partial class AddedUserSystem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.4");
@@ -104,58 +107,6 @@ namespace agenda_api.Migrations
                     b.ToTable("Funcionario", (string)null);
                 });
 
-            modelBuilder.Entity("agenda_api.Models.LogAtividade", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
-
-                    b.Property<string>("Categoria")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar")
-                        .HasColumnName("Categoria");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime")
-                        .HasColumnName("CreatedAt");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar")
-                        .HasColumnName("Descricao");
-
-                    b.Property<Guid>("IdPessoa")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("IdPessoa");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdPessoa");
-
-                    b.ToTable("LogAtividades", (string)null);
-                });
-
-            modelBuilder.Entity("agenda_api.Models.PerfilAcesso", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar")
-                        .HasColumnName("Nome");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PerfilAcesso", (string)null);
-                });
-
             modelBuilder.Entity("agenda_api.Models.Pessoa", b =>
                 {
                     b.Property<Guid>("Id")
@@ -221,43 +172,6 @@ namespace agenda_api.Migrations
                     b.ToTable("Pessoa", (string)null);
                 });
 
-            modelBuilder.Entity("agenda_api.Models.Usuario", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("UniqueIdentifier")
-                        .HasColumnName("Id");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime")
-                        .HasColumnName("CreatedAt");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("Password");
-
-                    b.Property<Guid>("PerfilAcessoId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("PerfilAcessoId");
-
-                    b.Property<Guid>("PessoaId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("PessoaId");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("Username");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PessoaId")
-                        .IsUnique();
-
-                    b.ToTable("Usuario", (string)null);
-                });
-
             modelBuilder.Entity("agenda_api.Models.Cliente", b =>
                 {
                     b.HasOne("agenda_api.Models.Pessoa", "Pessoa")
@@ -284,36 +198,6 @@ namespace agenda_api.Migrations
                         .IsRequired();
 
                     b.Navigation("Cargo");
-
-                    b.Navigation("Pessoa");
-                });
-
-            modelBuilder.Entity("agenda_api.Models.LogAtividade", b =>
-                {
-                    b.HasOne("agenda_api.Models.Pessoa", "Pessoa")
-                        .WithMany()
-                        .HasForeignKey("IdPessoa")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pessoa");
-                });
-
-            modelBuilder.Entity("agenda_api.Models.Usuario", b =>
-                {
-                    b.HasOne("agenda_api.Models.PerfilAcesso", "Acesso")
-                        .WithMany()
-                        .HasForeignKey("PessoaId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("agenda_api.Models.Pessoa", "Pessoa")
-                        .WithOne()
-                        .HasForeignKey("agenda_api.Models.Usuario", "PessoaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Acesso");
 
                     b.Navigation("Pessoa");
                 });

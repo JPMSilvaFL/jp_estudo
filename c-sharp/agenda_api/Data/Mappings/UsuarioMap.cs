@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace agenda_api.Data.Mappings;
 
-public class UserMap : IEntityTypeConfiguration<Usuario> {
+public class UsuarioMap : IEntityTypeConfiguration<Usuario> {
 	public void Configure(EntityTypeBuilder<Usuario> builder) {
+		builder.ToTable("Usuario");
+
 		builder.HasKey(u => u.Id);
 		builder.Property(u => u.Id)
 			.HasColumnName("Id")
@@ -26,6 +28,10 @@ public class UserMap : IEntityTypeConfiguration<Usuario> {
 			.HasColumnName("PessoaId")
 			.HasColumnType("uniqueidentifier")
 			.IsRequired();
+		builder.HasOne<Pessoa>(u => u.Pessoa)
+			.WithOne()
+			.HasForeignKey<Usuario>(u => u.PessoaId)
+			.OnDelete(DeleteBehavior.Cascade);
 
 		builder.Property(u => u.PerfilAcessoId)
 			.HasColumnName("PerfilAcessoId")
