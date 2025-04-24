@@ -3,4 +3,7 @@
 namespace agenda_api.Controllers;
 
 [Route("usuario")]
-public class UsuarioController : ControllerBase { }
+public class UsuarioController : ControllerBase {
+	[HttpPost("create")];
+
+}
