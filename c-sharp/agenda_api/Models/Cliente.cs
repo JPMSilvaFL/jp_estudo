@@ -8,8 +8,7 @@ public class Cliente {
 
 	public Cliente() { }
 
-	public Cliente(Pessoa pessoa)
-	{
+	public Cliente(Pessoa pessoa) {
 		Id = Guid.NewGuid();
 		Pessoa = pessoa;
 		CreatedAt = DateTime.UtcNow;
