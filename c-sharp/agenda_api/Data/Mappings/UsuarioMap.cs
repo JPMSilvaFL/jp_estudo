@@ -28,7 +28,7 @@ public class UsuarioMap : IEntityTypeConfiguration<Usuario> {
 			.HasColumnName("PessoaId")
 			.HasColumnType("uniqueidentifier")
 			.IsRequired();
-		builder.HasOne<Pessoa>(u => u.Pessoa)
+		builder.HasOne(u => u.Pessoa)
 			.WithOne()
 			.HasForeignKey<Usuario>(u => u.PessoaId)
 			.OnDelete(DeleteBehavior.Cascade);
@@ -37,9 +37,9 @@ public class UsuarioMap : IEntityTypeConfiguration<Usuario> {
 			.HasColumnName("PerfilAcessoId")
 			.HasColumnType("uniqueidentifier")
 			.IsRequired();
-		builder.HasOne<PerfilAcesso>(p => p.Acesso)
+		builder.HasOne(p => p.Acesso)
 			.WithMany()
-			.HasForeignKey(x => x.PessoaId)
+			.HasForeignKey(x => x.PerfilAcessoId)
 			.OnDelete(DeleteBehavior.Restrict);
 
 		builder.Property(u => u.CreatedAt)

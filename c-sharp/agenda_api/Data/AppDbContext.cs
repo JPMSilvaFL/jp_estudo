@@ -10,6 +10,9 @@ public class AppDbContext : DbContext {
 	public DbSet<Cliente> Clientes { get; set; }
 	public DbSet<Funcionario> Funcionarios { get; set; }
 	public DbSet<Cargo> Cargos { get; set; }
+	public DbSet<PerfilAcesso> PerfilAcessos { get; set; }
+	public DbSet<Usuario> Usuarios { get; set; }
+	public DbSet<LogAtividade> LogAtividades { get; set; }
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
 		optionsBuilder.UseSqlite("Data Source=app.db");

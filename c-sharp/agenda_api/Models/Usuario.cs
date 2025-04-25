@@ -13,11 +13,13 @@ public class Usuario {
 
 	public Usuario() { }
 
-	public Usuario(PerfilAcesso perfilAcesso, Pessoa pessoa) {
+	public Usuario(PerfilAcesso perfilAcesso, Pessoa pessoa, string username, string password) {
 		Id = Guid.NewGuid();
 		Acesso = perfilAcesso;
 		CreatedAt = DateTime.UtcNow;
 		Pessoa = pessoa;
+		Username = username;
+		Password = password;
 	}
 
 	public void AdicionarAtividade(LogAtividade log) {
