@@ -16,12 +16,13 @@ public class UsuarioMap : IEntityTypeConfiguration<Usuario> {
 
 		builder.Property(u => u.Username)
 			.HasColumnName("Username")
-			.HasColumnType("varchar(100)")
+			.HasColumnType("varchar")
+			.HasMaxLength(50)
 			.IsRequired();
 
 		builder.Property(u => u.Password)
 			.HasColumnName("Password")
-			.HasColumnType("varchar(100)")
+			.HasColumnType("nvarchar")
 			.IsRequired();
 
 		builder.Property(u => u.PessoaId)
