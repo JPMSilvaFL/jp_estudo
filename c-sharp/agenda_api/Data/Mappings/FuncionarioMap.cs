@@ -38,8 +38,9 @@ public class FuncionarioMap : IEntityTypeConfiguration<Funcionario> {
 			.OnDelete(DeleteBehavior.NoAction);
 
 		builder.HasOne(f => f.Pessoa)
-			.WithMany()
-			.HasForeignKey(f => f.PessoaId)
+			.WithOne()
+			.HasForeignKey<Funcionario>(f => f.PessoaId)
+			.HasConstraintName("FK_Funcionario_Pessoa")
 			.OnDelete(DeleteBehavior.Cascade);
 	}
 }

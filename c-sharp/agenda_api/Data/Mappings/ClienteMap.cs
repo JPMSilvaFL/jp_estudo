@@ -19,8 +19,9 @@ public class ClienteMap : IEntityTypeConfiguration<Cliente> {
 			.HasColumnName("IdPerson")
 			.IsRequired();
 		builder.HasOne(p => p.Pessoa)
-			.WithMany()
-			.HasForeignKey(p => p.PessoaId)
+			.WithOne()
+			.HasForeignKey<Cliente>(p => p.PessoaId)
+			.HasConstraintName("FK_Cliente_Pessoa")
 			.OnDelete(DeleteBehavior.Cascade);
 
 		builder.Property(p => p.CreatedAt)
@@ -29,12 +30,3 @@ public class ClienteMap : IEntityTypeConfiguration<Cliente> {
 			.IsRequired();
 	}
 }
-
-// CREATE TABLE Cliente(
-// 	id uniqueidentifier primary key default newsequentialid(),
-// 	idPerson uniqueidentifier not null
-// constraint FK_Cliente_Person
-// foreign key (idPerson)
-// references Person(id)
-// on delete cascade,
-// 	)

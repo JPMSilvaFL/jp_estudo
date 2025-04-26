@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using agenda_api.Data;
 
@@ -10,9 +11,11 @@ using agenda_api.Data;
 namespace agenda_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250426005609_TableSecretaria")]
+    partial class TableSecretaria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.4");
@@ -68,8 +71,7 @@ namespace agenda_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PessoaId")
-                        .IsUnique();
+                    b.HasIndex("PessoaId");
 
                     b.ToTable("Cliente", (string)null);
                 });
@@ -100,8 +102,7 @@ namespace agenda_api.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.HasIndex("PessoaId")
-                        .IsUnique();
+                    b.HasIndex("PessoaId");
 
                     b.ToTable("Funcionario", (string)null);
                 });
@@ -240,8 +241,7 @@ namespace agenda_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdFuncionario")
-                        .IsUnique();
+                    b.HasIndex("IdFuncionario");
 
                     b.ToTable("Secretaria", (string)null);
                 });
@@ -289,11 +289,10 @@ namespace agenda_api.Migrations
             modelBuilder.Entity("agenda_api.Models.Cliente", b =>
                 {
                     b.HasOne("agenda_api.Models.Pessoa", "Pessoa")
-                        .WithOne()
-                        .HasForeignKey("agenda_api.Models.Cliente", "PessoaId")
+                        .WithMany()
+                        .HasForeignKey("PessoaId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Cliente_Pessoa");
+                        .IsRequired();
 
                     b.Navigation("Pessoa");
                 });
@@ -307,11 +306,10 @@ namespace agenda_api.Migrations
                         .IsRequired();
 
                     b.HasOne("agenda_api.Models.Pessoa", "Pessoa")
-                        .WithOne()
-                        .HasForeignKey("agenda_api.Models.Funcionario", "PessoaId")
+                        .WithMany()
+                        .HasForeignKey("PessoaId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Funcionario_Pessoa");
+                        .IsRequired();
 
                     b.Navigation("Cargo");
 
@@ -332,11 +330,10 @@ namespace agenda_api.Migrations
             modelBuilder.Entity("agenda_api.Models.Secretaria", b =>
                 {
                     b.HasOne("agenda_api.Models.Funcionario", "Funcionario")
-                        .WithOne()
-                        .HasForeignKey("agenda_api.Models.Secretaria", "IdFuncionario")
+                        .WithMany()
+                        .HasForeignKey("IdFuncionario")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Secretaria_Funcionario");
+                        .IsRequired();
 
                     b.Navigation("Funcionario");
                 });

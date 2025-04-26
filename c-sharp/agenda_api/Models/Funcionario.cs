@@ -1,6 +1,6 @@
 ﻿namespace agenda_api.Models;
 
-public class Funcionario {
+public class Funcionario{
 	public Guid Id { get; set; }
 	public Guid CargoId { get; set; }
 	public Cargo? Cargo { get; set; }

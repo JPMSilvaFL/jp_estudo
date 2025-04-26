@@ -1,6 +1,6 @@
 ﻿namespace agenda_api.Models;
 
-public class Cliente {
+public class Cliente{
 	public Guid Id { get; set; }
 	public Guid PessoaId { get; set; }
 	public Pessoa Pessoa { get; set; }

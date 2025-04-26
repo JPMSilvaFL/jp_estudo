@@ -27,5 +27,6 @@ public class AppDbContext : DbContext {
 		modelBuilder.ApplyConfiguration(new PerfilAcessoMap());
 		modelBuilder.ApplyConfiguration(new UsuarioMap());
 		modelBuilder.ApplyConfiguration(new LogAtividadeMap());
+		modelBuilder.ApplyConfiguration(new SecretariaMap());
 	}
 }
