@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace agenda_api.Controllers;
 
+[ApiController]
 [Route("usuario")]
 public class UsuarioController : ControllerBase {
 	[HttpPost("create")]

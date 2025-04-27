@@ -2,10 +2,10 @@
 using agenda_api.Models;
 using agenda_api.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace agenda_api.Controllers;
 
+[ApiController]
 [Route("funcionario")]
 public class FuncionarioController : ControllerBase {
 	[HttpPost("create")]

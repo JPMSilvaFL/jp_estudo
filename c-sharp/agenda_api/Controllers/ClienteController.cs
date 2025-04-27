@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace agenda_api.Controllers;
 
+[ApiController]
 [Route("cliente")]
 public class ClienteController : ControllerBase {
 	[HttpGet("lista")]

@@ -17,6 +17,50 @@ namespace agenda_api.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.4");
 
+            modelBuilder.Entity("agenda_api.Models.Atendimento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<Guid?>("FuncionarioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdCliente")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("IdCliente");
+
+                    b.Property<Guid>("IdFuncionario")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("IdFuncionario");
+
+                    b.Property<Guid>("IdHorario")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("IdHorario");
+
+                    b.Property<Guid>("IdSecretaria")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("IdSecretaria");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FuncionarioId");
+
+                    b.HasIndex("IdCliente")
+                        .IsUnique();
+
+                    b.HasIndex("IdFuncionario");
+
+                    b.HasIndex("IdHorario")
+                        .IsUnique();
+
+                    b.HasIndex("IdSecretaria")
+                        .IsUnique();
+
+                    b.ToTable("Atendimento", (string)null);
+                });
+
             modelBuilder.Entity("agenda_api.Models.Cargo", b =>
                 {
                     b.Property<Guid>("Id")
@@ -104,6 +148,37 @@ namespace agenda_api.Migrations
                         .IsUnique();
 
                     b.ToTable("Funcionario", (string)null);
+                });
+
+            modelBuilder.Entity("agenda_api.Models.HorarioDisponivel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<Guid?>("FuncionarioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Horario")
+                        .HasColumnType("DateTime")
+                        .HasColumnName("Horario");
+
+                    b.Property<Guid>("IdFuncionario")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("IdFuncionario");
+
+                    b.Property<bool>("Reservado")
+                        .HasColumnType("bit")
+                        .HasColumnName("Reservado");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FuncionarioId");
+
+                    b.HasIndex("IdFuncionario");
+
+                    b.ToTable("HorarioDisponivel", (string)null);
                 });
 
             modelBuilder.Entity("agenda_api.Models.LogAtividade", b =>
@@ -209,9 +284,6 @@ namespace agenda_api.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("UpdatedAt");
 
-                    b.Property<DateTime>("dataHoraLancamento")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Cpf")
@@ -286,6 +358,49 @@ namespace agenda_api.Migrations
                     b.ToTable("Usuario", (string)null);
                 });
 
+            modelBuilder.Entity("agenda_api.Models.Atendimento", b =>
+                {
+                    b.HasOne("agenda_api.Models.Funcionario", null)
+                        .WithMany("Atendimentos")
+                        .HasForeignKey("FuncionarioId");
+
+                    b.HasOne("agenda_api.Models.Cliente", "Cliente")
+                        .WithOne()
+                        .HasForeignKey("agenda_api.Models.Atendimento", "IdCliente")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_Atendimento_Cliente");
+
+                    b.HasOne("agenda_api.Models.Funcionario", "Funcionario")
+                        .WithMany()
+                        .HasForeignKey("IdFuncionario")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_Atendimento_Funcionario");
+
+                    b.HasOne("agenda_api.Models.HorarioDisponivel", "HorarioDisponivel")
+                        .WithOne()
+                        .HasForeignKey("agenda_api.Models.Atendimento", "IdHorario")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_Atendimento_Horario");
+
+                    b.HasOne("agenda_api.Models.Secretaria", "Secretaria")
+                        .WithOne()
+                        .HasForeignKey("agenda_api.Models.Atendimento", "IdSecretaria")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("Fk_Atendimento_Secretaria");
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Funcionario");
+
+                    b.Navigation("HorarioDisponivel");
+
+                    b.Navigation("Secretaria");
+                });
+
             modelBuilder.Entity("agenda_api.Models.Cliente", b =>
                 {
                     b.HasOne("agenda_api.Models.Pessoa", "Pessoa")
@@ -316,6 +431,22 @@ namespace agenda_api.Migrations
                     b.Navigation("Cargo");
 
                     b.Navigation("Pessoa");
+                });
+
+            modelBuilder.Entity("agenda_api.Models.HorarioDisponivel", b =>
+                {
+                    b.HasOne("agenda_api.Models.Funcionario", null)
+                        .WithMany("HorariosDisponiveis")
+                        .HasForeignKey("FuncionarioId");
+
+                    b.HasOne("agenda_api.Models.Funcionario", "Funcionario")
+                        .WithMany()
+                        .HasForeignKey("IdFuncionario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("Fk_HorarioDisponivel_Funcionario");
+
+                    b.Navigation("Funcionario");
                 });
 
             modelBuilder.Entity("agenda_api.Models.LogAtividade", b =>
@@ -358,6 +489,13 @@ namespace agenda_api.Migrations
                     b.Navigation("Acesso");
 
                     b.Navigation("Pessoa");
+                });
+
+            modelBuilder.Entity("agenda_api.Models.Funcionario", b =>
+                {
+                    b.Navigation("Atendimentos");
+
+                    b.Navigation("HorariosDisponiveis");
                 });
 #pragma warning restore 612, 618
         }

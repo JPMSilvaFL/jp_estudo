@@ -7,6 +7,8 @@ public class Funcionario{
 	public Guid PessoaId { get; set; }
 	public Pessoa? Pessoa { get; set; }
 	public DateTime DataDeIngresso { set; get; }
+	public ICollection<HorarioDisponivel>? HorariosDisponiveis { get; set; } = new List<HorarioDisponivel>();
+	public ICollection<Atendimento>? Atendimentos { get; set; } = new List<Atendimento>();
 
 	public Funcionario() { }
 

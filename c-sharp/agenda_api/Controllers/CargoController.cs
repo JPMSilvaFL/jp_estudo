@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace agenda_api.Controllers;
 
+[ApiController]
 [Route("cargo")]
 public class CargoController : ControllerBase {
 	[HttpPost("create")]

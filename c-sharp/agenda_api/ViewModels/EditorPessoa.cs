@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Serialization;
 
 namespace agenda_api.ViewModels;
 

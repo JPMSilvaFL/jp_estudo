@@ -3,14 +3,15 @@
 public class Secretaria{
 	public Guid Id { get; set; }
 	public Guid IdFuncionario { get; set; }
-	public Funcionario? Funcionario { get; set; }
+	public Funcionario Funcionario { get; set; }
 	public Guid? IdSala { get; set; }
 
 	public Secretaria(){}
 
-	public Secretaria(Guid idFuncionario)
+	public Secretaria(Funcionario funcionario)
 	{
 		Id = Guid.NewGuid();
-		IdFuncionario = idFuncionario;
+		IdFuncionario = funcionario.Id;
+		Funcionario = funcionario;
 	}
 }

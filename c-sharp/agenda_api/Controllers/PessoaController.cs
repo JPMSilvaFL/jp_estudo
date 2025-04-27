@@ -1,34 +1,52 @@
 ﻿using agenda_api.Data;
 using agenda_api.Models;
 using agenda_api.ViewModels;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace agenda_api.Controllers;
 
+[ApiController]
 [Route("pessoa")]
 public class PessoaController : ControllerBase {
+
 	[HttpGet("lista")]
 	public async Task<IActionResult> GetAll([FromServices] AppDbContext context) {
-		var pessoas = context.Pessoas.ToList();
-		if (pessoas.Count == 0)
-			return BadRequest("Nenhuma pessoa foi encontrada");
+		try {
 
-		return Ok(pessoas);
+
+			var pessoas = await context
+				.Pessoas
+				.AsNoTracking()
+				.ToListAsync();
+			if (pessoas.Count == 0)
+				return BadRequest(new ResultViewModel<Pessoa>("Nenhuma pessoa encontrada"));
+
+			return Ok(new ResultViewModel<Pessoa>(pessoas));
+		}
+		catch {
+			return StatusCode(500, new ResultViewModel<Pessoa>("Falha interna do servidor"));
+		}
 	}
 
 	[HttpPost("Create")]
 	public async Task<IActionResult> Post([FromBody] EditorPessoa pessoa, [FromServices] AppDbContext context) {
-		var person = new Pessoa(pessoa.Cpf, pessoa.FullName, pessoa.Email, pessoa.Contato, pessoa.Endereco);
+		try {
+			if (!ModelState.IsValid) {
+				var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+				return BadRequest(new ResultViewModel<Pessoa>(errors.ToList()));
+			}
 
-		if (person.Notifications.Count > 0)
-			return BadRequest(person.Notifications);
+			var person = new Pessoa(pessoa.Cpf, pessoa.FullName, pessoa.Email, pessoa.Contato, pessoa.Endereco);
 
-		await context.Pessoas.AddAsync(person);
-		await context.SaveChangesAsync();
+			await context.Pessoas.AddAsync(person);
+			await context.SaveChangesAsync();
 
-		return Ok(person);
+			return Ok(new ResultViewModel<Pessoa>(person));
+		}
+		catch {
+			return StatusCode(500, new ResultViewModel<Pessoa>("Falha interna do servidor"));
+		}
 	}
 
 	[HttpDelete("Delete/{id}")]

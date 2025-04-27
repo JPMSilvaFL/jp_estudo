@@ -1,6 +1,5 @@
 ﻿using agenda_api.Data.Mappings;
 using agenda_api.Models;
-using agenda_api.Models.Notifications;
 using Microsoft.EntityFrameworkCore;
 
 namespace agenda_api.Data;
@@ -19,7 +18,6 @@ public class AppDbContext : DbContext {
 	}
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder) {
-		modelBuilder.Ignore<Notification>();
 		modelBuilder.ApplyConfiguration(new PessoaMap());
 		modelBuilder.ApplyConfiguration(new ClienteMap());
 		modelBuilder.ApplyConfiguration(new FuncionarioMap());
@@ -28,5 +26,7 @@ public class AppDbContext : DbContext {
 		modelBuilder.ApplyConfiguration(new UsuarioMap());
 		modelBuilder.ApplyConfiguration(new LogAtividadeMap());
 		modelBuilder.ApplyConfiguration(new SecretariaMap());
+		modelBuilder.ApplyConfiguration(new HorarioDisponivelMap());
+		modelBuilder.ApplyConfiguration(new AtendimentoMap());
 	}
 }

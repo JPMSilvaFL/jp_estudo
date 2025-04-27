@@ -1,6 +1,6 @@
 ﻿namespace agenda_api.Models;
 
-public class Pessoa : Base {
+public class Pessoa {
 	public Guid Id { set; get; }
 	public string Cpf { get; set; }
 	public string FullName { get; set; }
