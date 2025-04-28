@@ -1,4 +1,5 @@
-﻿using agenda_api.Data;
+﻿using agenda_api.Collections.Repository;
+using agenda_api.Data;
 using agenda_api.Models;
 using agenda_api.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -9,16 +10,15 @@ namespace agenda_api.Controllers;
 [ApiController]
 [Route("pessoa")]
 public class PessoaController : ControllerBase {
+	private readonly IRepository<Pessoa> _repository;
+	public PessoaController(IRepository<Pessoa> repository) {
+		_repository = repository;
+	}
 
 	[HttpGet("lista")]
-	public async Task<IActionResult> GetAll([FromServices] AppDbContext context) {
+	public async Task<IActionResult> GetAll() {
 		try {
-
-
-			var pessoas = await context
-				.Pessoas
-				.AsNoTracking()
-				.ToListAsync();
+			var pessoas = await _repository.GetAllAsync();
 			if (pessoas.Count == 0)
 				return BadRequest(new ResultViewModel<Pessoa>("Nenhuma pessoa encontrada"));
 

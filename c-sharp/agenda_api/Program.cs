@@ -1,15 +1,16 @@
+using agenda_api.Collections.Repository;
 using agenda_api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder
 	.Services
 	.AddControllers()
 	.ConfigureApiBehaviorOptions(options => {
 		options.SuppressModelStateInvalidFilter = true;
 	});
-
-builder.Services.AddDbContext<AppDbContext>();
 
 var app = builder.Build();
 

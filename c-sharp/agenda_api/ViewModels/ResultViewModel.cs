@@ -1,15 +1,15 @@
 ﻿namespace agenda_api.ViewModels;
 
 public class ResultViewModel<T> where T : class {
-	public List<T> Data { get; private set; } = [];
-	public List<string> Errors { get; private set; } = [];
+	public IList<T> Data { get; private set; } = [];
+	public IList<string> Errors { get; private set; } = [];
 
-	public ResultViewModel(T data, List<string> errors) {
+	public ResultViewModel(T data, IList<string> errors) {
 		Data.Add(data);
 		Errors = errors;
 	}
 
-	public ResultViewModel(List<T> data, List<string> errors) {
+	public ResultViewModel(IList<T> data, IList<string> errors) {
 		Data = data;
 		Errors = errors;
 	}
@@ -23,7 +23,7 @@ public class ResultViewModel<T> where T : class {
 		Data.Add(data);
 	}
 
-	public ResultViewModel(List<string> errors){
+	public ResultViewModel(IList<string> errors){
 		Errors = errors;
 	}
 
@@ -31,7 +31,7 @@ public class ResultViewModel<T> where T : class {
 		Errors.Add(error);
 	}
 
-	public ResultViewModel(List<T> data) {
+	public ResultViewModel(IList<T> data) {
 		Data = data;
 	}
 }
