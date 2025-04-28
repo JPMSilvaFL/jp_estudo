@@ -1,8 +1,8 @@
 ﻿namespace agenda_api.ViewModels;
 
 public class ResultViewModel<T> where T : class {
-	public IList<T> Data { get; private set; } = [];
-	public IList<string> Errors { get; private set; } = [];
+	public IList<T> Data { get; set; } = [];
+	public IList<string> Errors { get; set; } = [];
 
 	public ResultViewModel(T data, IList<string> errors) {
 		Data.Add(data);
@@ -23,7 +23,7 @@ public class ResultViewModel<T> where T : class {
 		Data.Add(data);
 	}
 
-	public ResultViewModel(IList<string> errors){
+	public ResultViewModel(IList<string> errors) {
 		Errors = errors;
 	}
 
