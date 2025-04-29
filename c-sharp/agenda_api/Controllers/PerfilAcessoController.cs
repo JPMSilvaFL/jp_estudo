@@ -1,4 +1,5 @@
-﻿using agenda_api.Data;
+﻿using agenda_api.Collections.Repository;
+using agenda_api.Data;
 using agenda_api.Models;
 using agenda_api.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -9,20 +10,24 @@ namespace agenda_api.Controllers;
 [ApiController]
 [Route("acesso")]
 public class PerfilAcessoController : ControllerBase {
-	[HttpPost("create")]
-	public async Task<IActionResult> Criar([FromBody] EditorAcesso acesso, [FromServices] AppDbContext context) {
-		var acessoCriado = new PerfilAcesso(acesso.Nome);
-		await context.AddAsync(acessoCriado);
-		await context.SaveChangesAsync();
+	private readonly IRepository<PerfilAcesso> _repository;
 
-		return Ok(acessoCriado);
+	public PerfilAcessoController(IRepository<PerfilAcesso> repository) {
+		_repository = repository;
+	}
+
+	[HttpPost("create")]
+	public async Task<IActionResult> Criar([FromBody] EditorAcesso acesso) {
+		var acessoCriado = new PerfilAcesso(acesso.Nome);
+		await _repository.AddAsync(acessoCriado);
+		await _repository.SaveChangesAsync();
+		return Ok(new ResultViewModel<PerfilAcesso>(acessoCriado));
 	}
 
 	[HttpGet("lista")]
-	public async Task<IActionResult> Lista([FromServices] AppDbContext context) {
-		var listaAcessos = await context.PerfilAcessos
-			.ToListAsync();
+	public async Task<IActionResult> Lista() {
+		var listaAcessos = await _repository.GetAllAsync();
 
-		return Ok(listaAcessos);
+		return Ok(new ResultViewModel<PerfilAcesso>(listaAcessos));
 	}
 }
