@@ -1,4 +1,5 @@
 ﻿using agenda_api.Collections.Repository;
+using agenda_api.Collections.Repository.Interfaces;
 using agenda_api.Data;
 using agenda_api.Models;
 using agenda_api.ViewModels;
@@ -26,7 +27,7 @@ public class ClienteController : ControllerBase {
 			.Include(p => p.Pessoa)
 			.Where(p => p.Pessoa.IsActive == true)
 			.ToListAsync();
-		return Ok(new ResultViewModel<Cliente>(clientes));
+		return Ok(new ResultViewModel<IList<Cliente>>(clientes));
 	}
 
 	[HttpPost("createcliente")]

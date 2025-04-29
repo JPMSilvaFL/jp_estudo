@@ -1,4 +1,4 @@
-﻿namespace agenda_api.Collections.Repository;
+﻿namespace agenda_api.Collections.Repository.Interfaces;
 
 public interface IRepository<T> where T : class {
 	Task<T> GetByIdAsync(Guid id); // Recuperar por ID

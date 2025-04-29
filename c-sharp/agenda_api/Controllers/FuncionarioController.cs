@@ -1,4 +1,5 @@
 ﻿using agenda_api.Collections.Repository;
+using agenda_api.Collections.Repository.Interfaces;
 using agenda_api.Models;
 using agenda_api.ViewModels;
 using Microsoft.AspNetCore.Mvc;

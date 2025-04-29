@@ -1,4 +1,5 @@
 ﻿using agenda_api.Collections.Repository;
+using agenda_api.Collections.Repository.Interfaces;
 using agenda_api.Data;
 using agenda_api.Models;
 using agenda_api.ViewModels;
@@ -10,7 +11,6 @@ namespace agenda_api.Controllers;
 [ApiController]
 [Route("cargo")]
 public class CargoController : ControllerBase {
-
 	private readonly IRepository<Cargo> _repository;
 
 	public CargoController(IRepository<Cargo> repository) {
@@ -30,6 +30,6 @@ public class CargoController : ControllerBase {
 	[HttpGet("lista")]
 	public async Task<IActionResult> Lista() {
 		var cargos = await _repository.GetAllAsync();
-		return Ok(new ResultViewModel<Cargo>(cargos));
+		return Ok(new ResultViewModel<IList<Cargo>>(cargos));
 	}
 }

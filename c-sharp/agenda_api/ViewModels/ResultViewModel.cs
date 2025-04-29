@@ -30,8 +30,4 @@ public class ResultViewModel<T> where T : class {
 	public ResultViewModel(string error) {
 		Errors.Add(error);
 	}
-
-	public ResultViewModel(IList<T> data) {
-		Data = data;
-	}
 }

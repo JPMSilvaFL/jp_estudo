@@ -1,4 +1,5 @@
 ﻿using agenda_api.Collections.Repository;
+using agenda_api.Collections.Repository.Interfaces;
 using agenda_api.Data;
 using agenda_api.Models;
 using agenda_api.ViewModels;
@@ -28,6 +29,6 @@ public class PerfilAcessoController : ControllerBase {
 	public async Task<IActionResult> Lista() {
 		var listaAcessos = await _repository.GetAllAsync();
 
-		return Ok(new ResultViewModel<PerfilAcesso>(listaAcessos));
+		return Ok(new ResultViewModel<IList<PerfilAcesso>>(listaAcessos));
 	}
 }
