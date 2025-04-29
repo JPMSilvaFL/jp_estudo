@@ -1,4 +1,5 @@
 ﻿using agenda_api.Collections.Repository;
+using agenda_api.Collections.Repository.Interfaces;
 using agenda_api.Data;
 using agenda_api.Models;
 using agenda_api.ViewModels;
@@ -10,7 +11,6 @@ namespace agenda_api.Controllers;
 [ApiController]
 [Route("cargo")]
 public class CargoController : ControllerBase {
-
 	private readonly IRepository<Cargo> _repository;
 
 	public CargoController(IRepository<Cargo> repository) {

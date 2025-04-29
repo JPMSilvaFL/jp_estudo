@@ -1,4 +1,5 @@
-﻿using agenda_api.Data;
+﻿using agenda_api.Collections.Repository.Interfaces;
+using agenda_api.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace agenda_api.Collections.Repository;
@@ -13,9 +14,8 @@ public class Repository<T> : IRepository<T> where T : class {
 	}
 
 	public async Task<T> GetByIdAsync(Guid id) {
-		if (id == Guid.Empty || id == null) {
+		if (id == Guid.Empty || id == null) { }
 
-		}
 		return await _dbSet.FindAsync(id);
 	}
 
