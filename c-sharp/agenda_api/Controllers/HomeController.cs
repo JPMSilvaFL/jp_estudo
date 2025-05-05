@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using agenda_api.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace agenda_api.Controllers;
 
 [ApiController]
 public class HomeController : ControllerBase {
-	[HttpGet("/")]
-	public string Get()
-	{
-		return "Hello World!!!!";
+	[HttpGet("/home")]
+	[Authorize(Roles = "Admin")]
+	public IActionResult Index() {
+		return Ok("Funcionando!");
 	}
 }

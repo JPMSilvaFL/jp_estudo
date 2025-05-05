@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace agenda_api.Collections.Repository;
 
-public class UsuarioRepository : IUsuarioRepository {
+public class UsuarioRepository : Repository<Usuario> {
 	private readonly AppDbContext _context;
 	private readonly DbSet<Usuario> _dbSet;
 

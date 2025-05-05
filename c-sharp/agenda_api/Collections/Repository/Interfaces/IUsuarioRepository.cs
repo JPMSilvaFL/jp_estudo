@@ -2,6 +2,6 @@
 
 namespace agenda_api.Collections.Repository.Interfaces;
 
-public interface IUsuarioRepository {
+public interface IUsuarioRepository : IRepository<Usuario> {
 	Task<Usuario?> GetUsersByPessoaIdAsync(Guid pessoaId);
 }

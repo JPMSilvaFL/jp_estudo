@@ -2,6 +2,7 @@
 using agenda_api.Collections.Repository.Interfaces;
 using agenda_api.Models;
 using agenda_api.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace agenda_api.Controllers;
@@ -22,6 +23,7 @@ public class FuncionarioController : ControllerBase {
 
 
 	[HttpPost("create")]
+	[Authorize("Admin")]
 	public async Task<IActionResult> Post([FromBody] EditorFuncionario create) {
 		var pessoa = await _pessoaRepository.GetByIdAsync(create.IdPessoa);
 
