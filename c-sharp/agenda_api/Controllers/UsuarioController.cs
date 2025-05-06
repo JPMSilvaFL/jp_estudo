@@ -2,8 +2,10 @@
 using agenda_api.Data;
 using agenda_api.Models;
 using agenda_api.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SecureIdentity.Password;
 
 namespace agenda_api.Controllers;
 
@@ -33,10 +35,12 @@ public class UsuarioController : ControllerBase {
 			return NotFound("Perfil de acesso invalido");
 		var usuarioCriado = new Usuario(acesso, pessoa, usuario.Username, usuario.Password);
 
+		usuarioCriado.Password = PasswordHasher.Hash(usuarioCriado.Password);
+
 		await context.Usuarios.AddAsync(usuarioCriado);
 		await context.SaveChangesAsync();
 
-		return Ok(usuarioCriado);
+		return Ok(new ResultViewModel<Usuario>(usuarioCriado));
 	}
 
 	[HttpPost("pessoaId")]
