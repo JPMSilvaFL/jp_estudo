@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using agenda_api;
 using agenda_api.Collections.Repository;
 using agenda_api.Collections.Repository.Interfaces;
@@ -27,7 +28,7 @@ void LoadConfiguration(WebApplication app) {
 
 	var smtp = new Configuration.SmtpConfiguration();
 	app.Configuration.GetSection("Smtp").Bind(smtp);
-	Configuration.Smpt = smtp;
+	Configuration.Smtp = smtp;
 }
 
 void ConfigureAuthentication(WebApplicationBuilder builder) {
@@ -49,7 +50,11 @@ void ConfigureMvc(WebApplicationBuilder builder) {
 	builder
 		.Services
 		.AddControllers()
-		.ConfigureApiBehaviorOptions(options => { options.SuppressModelStateInvalidFilter = true; });
+		.ConfigureApiBehaviorOptions(options => { options.SuppressModelStateInvalidFilter = true; })
+		.AddJsonOptions(x => {
+			x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+			x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
+		});
 }
 
 void ConfigureServices(WebApplicationBuilder builder) {
