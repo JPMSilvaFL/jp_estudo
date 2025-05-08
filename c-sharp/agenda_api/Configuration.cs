@@ -5,7 +5,7 @@ public static class Configuration {
 	public static string ApiKey { get; set; } = "api_key";
 	public static string ApiKeyName { get; set; } = "agenda_API_MDLAKMDLKML12K3MN1NDKADAEQE1231DAE131DA";
 
-	public static SmtpConfiguration Smpt { get; set; } = new();
+	public static SmtpConfiguration Smtp { get; set; } = new();
 
 	public class SmtpConfiguration {
 		public string Host { get; set; }
