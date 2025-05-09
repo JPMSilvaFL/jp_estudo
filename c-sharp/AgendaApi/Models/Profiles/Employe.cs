@@ -10,12 +10,10 @@ public class Employe {
 
 	public Employe() { }
 
-	public Employe(Position position, Person person) {
+	public Employe(Guid idPosition, Guid idPerson) {
 		Id = Guid.NewGuid();
-		IdPosition = position.Id;
-		IdPerson = person.Id;
-		FromPosition = position;
-		FromPerson = person;
+		IdPosition = idPosition;
+		IdPerson = idPerson;
 		CreatedAt = DateTime.UtcNow;
 	}
 }

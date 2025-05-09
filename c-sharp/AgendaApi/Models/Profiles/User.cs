@@ -12,7 +12,12 @@ public class User {
 
 	public User() { }
 
-	public User(string username, string passwordHash) {
-
+	public User(string username, string passwordHash, Guid idPerson, Guid idAccess) {
+		Id = Guid.NewGuid();
+		Username=username;
+		PasswordHash=passwordHash;
+		IdPerson=idPerson;
+		IdAccess=idAccess;
+		CreatedAt = DateTime.UtcNow;
 	}
 }

@@ -8,10 +8,9 @@ public class Client {
 
 	public Client() { }
 
-	public Client(Person person) {
+	public Client(Guid idPerson) {
 		Id = Guid.NewGuid();
-		FromPerson = person;
-		IdPerson = person.Id;
+		IdPerson = idPerson;
 		CreatedAt = DateTime.UtcNow;
 	}
 }
