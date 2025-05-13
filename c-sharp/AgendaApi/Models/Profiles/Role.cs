@@ -1,6 +1,6 @@
 ﻿namespace AgendaApi.Models.Profiles;
 
-public class Employe {
+public class Role {
 	public Guid Id { get; private set; }
 	public Guid IdPosition { get; private set; }
 	public Position? FromPosition { get; private set; }
@@ -8,9 +8,9 @@ public class Employe {
 	public Person? FromPerson { get; set; }
 	public DateTime CreatedAt { get; private set; }
 
-	public Employe() { }
+	public Role() { }
 
-	public Employe(Guid idPosition, Guid idPerson) {
+	public Role(Guid idPosition, Guid idPerson) {
 		Id = Guid.NewGuid();
 		IdPosition = idPosition;
 		IdPerson = idPerson;

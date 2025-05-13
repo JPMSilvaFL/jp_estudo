@@ -12,9 +12,6 @@ public class Repository<T> : IRepository<T> where T : class {
 		_context = context;
 		_dbSet = context.Set<T>();
 	}
-
-	protected Repository() { }
-
 	public async Task<T> GetByIdAsync(Guid id) {
 		var result = await _dbSet.FindAsync(id);
 		return result;

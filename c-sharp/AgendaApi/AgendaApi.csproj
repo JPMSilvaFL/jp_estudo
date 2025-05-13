@@ -18,10 +18,6 @@
 
     <ItemGroup>
       <Folder Include="Collections\Attributes\" />
-      <Folder Include="Collections\Repositories\" />
-      <Folder Include="Collections\Services\" />
-      <Folder Include="Collections\ViewModels\" />
-      <Folder Include="Controllers\" />
       <Folder Include="Migrations\" />
     </ItemGroup>
 
