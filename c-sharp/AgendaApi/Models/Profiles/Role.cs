@@ -2,18 +2,16 @@
 
 public class Role {
 	public Guid Id { get; private set; }
-	public Guid IdPosition { get; private set; }
-	public Position? FromPosition { get; private set; }
-	public Guid IdPerson { get; private set; }
-	public Person? FromPerson { get; set; }
+	public string Name { get; private set; } = string.Empty;
+	public string Description { get; private set; } = string.Empty;
 	public DateTime CreatedAt { get; private set; }
 
 	public Role() { }
 
-	public Role(Guid idPosition, Guid idPerson) {
+	public Role(string name, string description) {
 		Id = Guid.NewGuid();
-		IdPosition = idPosition;
-		IdPerson = idPerson;
+		Name = name;
+		Description = description;
 		CreatedAt = DateTime.UtcNow;
 	}
 }

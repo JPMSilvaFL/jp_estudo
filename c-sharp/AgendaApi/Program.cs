@@ -1,8 +1,11 @@
 using System.Text.Json.Serialization;
 using AgendaApi.Collections.Repositories;
 using AgendaApi.Collections.Repositories.Interfaces;
+using AgendaApi.Collections.Services.Interfaces;
 using AgendaApi.Collections.Services.Profiles;
 using AgendaApi.Data;
+using AgendaApi.Models.Profiles;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,10 +30,13 @@ void ConfigureMvc(WebApplicationBuilder builder) {
 }
 
 void ConfigureServices(WebApplicationBuilder builder) {
-	builder.Services.AddDbContext<AgendaDbContext>();
-	builder.Services.AddScoped<UserService>();
 
-	builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-	builder.Services.AddScoped<IUserRepository, UserRepository>();
-	builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+	builder.Services.AddDbContext<AgendaDbContext>(options =>
+		options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+	builder.Services.AddScoped<UserService>();
+	builder.Services.AddTransient<IPersonService, PersonService>();
+
+	builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+	builder.Services.AddTransient<IUserRepository, UserRepository>();
+	builder.Services.AddTransient<IPersonRepository, PersonRepository>();
 }
