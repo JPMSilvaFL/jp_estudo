@@ -12,4 +12,10 @@ public class Access {
 		Name = name;
 		CreatedAt = DateTime.UtcNow;
 	}
+
+	public Access(Guid id, string name, DateTime createdAt) {
+		Id = id;
+		Name = name;
+		CreatedAt = createdAt;
+	}
 }

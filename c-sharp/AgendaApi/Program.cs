@@ -35,12 +35,16 @@ void ConfigureServices(WebApplicationBuilder builder) {
 
 	builder.Services.AddDbContext<AgendaDbContext>(options =>
 		options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 	builder.Services.AddTransient<UserService>();
 	builder.Services.AddTransient<IPersonService, PersonService>();
 	builder.Services.AddTransient<ICustomerService, CustomerService>();
+	builder.Services.AddTransient<IUserService, UserService>();
+	builder.Services.AddTransient<IAccessService, AccessService>();
 
 	builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 	builder.Services.AddTransient<IUserRepository, UserRepository>();
 	builder.Services.AddTransient<IPersonRepository, PersonRepository>();
 	builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
+	builder.Services.AddTransient<IAccessRepository, AccessRepository>();
 }

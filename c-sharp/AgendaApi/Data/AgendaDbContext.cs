@@ -12,11 +12,15 @@ public class AgendaDbContext : DbContext{
 	public DbSet<Customer> Customers { get; set; }
 	public DbSet<Role> Roles { get; set; }
 	public DbSet<Employee> Employees { get; set; }
+	public DbSet<Access> Accesses { get; set; }
+	public DbSet<User> Users { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder) {
 		modelBuilder.ApplyConfiguration(new PersonMap());
 		modelBuilder.ApplyConfiguration(new CustomerMap());
 		modelBuilder.ApplyConfiguration(new RoleMap());
 		modelBuilder.ApplyConfiguration(new EmployeeMap());
+		modelBuilder.ApplyConfiguration(new AccessMap());
+		modelBuilder.ApplyConfiguration(new UserMap());
 	}
 }

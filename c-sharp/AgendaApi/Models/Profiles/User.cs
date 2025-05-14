@@ -3,7 +3,7 @@
 public class User {
 	public Guid Id { get; private set; }
 	public string Username { get; private set; } = string.Empty;
-	public string PasswordHash { get; private set; } = string.Empty;
+	public string PasswordHash { get; set; } = string.Empty;
 	public Person? FromPerson { get; private set; }
 	public Guid IdPerson { get; private set; }
 	public Guid IdAccess { get; private set; }
@@ -12,12 +12,16 @@ public class User {
 
 	public User() { }
 
-	public User(string username, string passwordHash, Guid idPerson, Guid idAccess) {
+	public User(string username, string passwordHash, Person person, Access access) {
 		Id = Guid.NewGuid();
 		Username=username;
 		PasswordHash=passwordHash;
-		IdPerson=idPerson;
-		IdAccess=idAccess;
+		FromPerson = person;
+		IdPerson = person.Id;
+		FromAccess = access;
+		IdAccess = access.Id;
 		CreatedAt = DateTime.UtcNow;
 	}
+
+
 }
