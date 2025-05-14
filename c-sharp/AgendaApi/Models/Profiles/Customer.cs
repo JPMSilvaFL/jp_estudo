@@ -1,14 +1,14 @@
 ﻿namespace AgendaApi.Models.Profiles;
 
-public class Client {
+public class Customer {
 	public Guid Id { get; private set; }
 	public Person? FromPerson { get; set; }
 	public Guid IdPerson { get; private set; }
 	public DateTime CreatedAt { get; private set; }
 
-	public Client() { }
+	public Customer() { }
 
-	public Client(Guid idPerson) {
+	public Customer(Guid idPerson) {
 		Id = Guid.NewGuid();
 		IdPerson = idPerson;
 		CreatedAt = DateTime.UtcNow;

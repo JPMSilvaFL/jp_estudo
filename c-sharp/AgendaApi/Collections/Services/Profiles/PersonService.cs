@@ -1,4 +1,5 @@
 ﻿using AgendaApi.Collections.Repositories.Interfaces;
+using AgendaApi.Collections.Repositories.Interfaces.Profiles;
 using AgendaApi.Collections.Services.Interfaces;
 using AgendaApi.Collections.ViewModels.Profiles;
 using AgendaApi.Models.Profiles;
@@ -18,5 +19,10 @@ public class PersonService : IPersonService{
 		await _personRepository.AddAsync(person);
 		await _personRepository.SaveChangesAsync();
 		return person;
+	}
+
+	public async Task<IList<Person>> HandleListPerson() {
+		var persons = await _personRepository.GetAllAsync();
+		return persons;
 	}
 }

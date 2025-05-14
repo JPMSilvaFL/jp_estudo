@@ -4,6 +4,7 @@ using AgendaApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgendaApi.Migrations
 {
     [DbContext(typeof(AgendaDbContext))]
-    partial class AgendaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250514135018_AddTabbleRole")]
+    partial class AddTabbleRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,35 +46,6 @@ namespace AgendaApi.Migrations
                         .IsUnique();
 
                     b.ToTable("Customer", (string)null);
-                });
-
-            modelBuilder.Entity("AgendaApi.Models.Profiles.Employee", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime")
-                        .HasColumnName("CreatedAt");
-
-                    b.Property<Guid>("IdPerson")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("IdPerson");
-
-                    b.Property<Guid>("IdRole")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("IdRole");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdPerson")
-                        .IsUnique();
-
-                    b.HasIndex("IdRole");
-
-                    b.ToTable("Employee", (string)null);
                 });
 
             modelBuilder.Entity("AgendaApi.Models.Profiles.Person", b =>
@@ -183,27 +157,6 @@ namespace AgendaApi.Migrations
                         .HasConstraintName("FK_Customar_Person");
 
                     b.Navigation("FromPerson");
-                });
-
-            modelBuilder.Entity("AgendaApi.Models.Profiles.Employee", b =>
-                {
-                    b.HasOne("AgendaApi.Models.Profiles.Person", "FromPerson")
-                        .WithOne()
-                        .HasForeignKey("AgendaApi.Models.Profiles.Employee", "IdPerson")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Employee_Person");
-
-                    b.HasOne("AgendaApi.Models.Profiles.Role", "FromRole")
-                        .WithMany()
-                        .HasForeignKey("IdRole")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
-                        .HasConstraintName("FK_Employee_Role");
-
-                    b.Navigation("FromPerson");
-
-                    b.Navigation("FromRole");
                 });
 #pragma warning restore 612, 618
         }

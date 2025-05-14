@@ -1,4 +1,5 @@
 ﻿using AgendaApi.Collections.Repositories.Interfaces;
+using AgendaApi.Collections.Repositories.Interfaces.Profiles;
 using AgendaApi.Data;
 using AgendaApi.Models.Profiles;
 using Microsoft.AspNetCore.Mvc;

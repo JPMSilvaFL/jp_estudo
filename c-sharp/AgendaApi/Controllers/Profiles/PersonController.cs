@@ -17,9 +17,18 @@ public class PersonController : ControllerBase {
 
 	[HttpPost("api/v1/persons/")]
 	public async Task<IActionResult> CreatePerson([FromBody]PersonViewModel model) {
-		if (!ModelState.IsValid)
-			return BadRequest(new ResultViewModel<Person>("Invalid Data!"));
+		if(!ModelState.IsValid)
+			return BadRequest(new ResultViewModel<Customer>(ModelState.Values
+				.SelectMany(x=>x.Errors)
+				.Select(x=>x.ErrorMessage)
+				.ToList()));
 		var result = await _personService.HandleCreatePerson(model);
 		return Ok(new ResultViewModel<Person>(result));
+	}
+
+	[HttpGet("api/v1/persons")]
+	public async Task<ActionResult<List<Person>>> GetPersons() {
+		var persons = await _personService.HandleListPerson();
+		return Ok(new ResultViewModel<IList<Person>>(persons));
 	}
 }
