@@ -5,13 +5,10 @@ namespace AgendaApi.Collections.ViewModels.Profiles;
 public class UserViewModel {
 	[Required(ErrorMessage = "Username is required")]
 	[Length(6,50, ErrorMessage = "Username must be between 6 and 50 characters")]
-	[RegularExpression(@"^[a-zA-Z0-9_]+$", ErrorMessage = "Only letters, numbers and underscores are allowed")]
 	public string Username { get; set; } = null!;
 
 	[Required(ErrorMessage = "Password is required")]
 	[Length(9,99, ErrorMessage = "Password must be between 6 and 50 characters")]
-	[RegularExpression("^(?=(?:.*\\d){2,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W_]).{9,}$\n",
-		ErrorMessage = "One letter upercase, One downcase, One symbol and 2 number, with the minimum characters 9")]
 	public string Password { get; set; } = null!;
 
 	[Required(ErrorMessage = "Access is required")]
@@ -30,7 +27,6 @@ public class UserViewModel {
 	public string Phone { get; set; } = null!;
 
 	[Required (ErrorMessage = "Document is required")]
-	[RegularExpression(@"^[0-9]{14}$", ErrorMessage = "Invalid document")]
 	public string Document { get; set; } = null!;
 
 	[Required(ErrorMessage = "Type is required")]

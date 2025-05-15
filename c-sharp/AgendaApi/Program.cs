@@ -1,20 +1,28 @@
+using System.Text;
 using System.Text.Json.Serialization;
+using AgendaApi;
 using AgendaApi.Collections.Repositories;
 using AgendaApi.Collections.Repositories.Interfaces;
 using AgendaApi.Collections.Repositories.Interfaces.Profiles;
 using AgendaApi.Collections.Repositories.Profiles;
 using AgendaApi.Collections.Services.Interfaces;
+using AgendaApi.Collections.Services.Interfaces.Utilities;
 using AgendaApi.Collections.Services.Profiles;
+using AgendaApi.Collections.Services.Utilities;
 using AgendaApi.Data;
-using AgendaApi.Models.Profiles;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
+ConfigureAuthentication(builder);
 ConfigureMvc(builder);
 ConfigureServices(builder);
 
 var app = builder.Build();
+
+LoadConfiguration(app);
 
 app.MapControllers();
 app.UseHttpsRedirection();
@@ -36,15 +44,38 @@ void ConfigureServices(WebApplicationBuilder builder) {
 	builder.Services.AddDbContext<AgendaDbContext>(options =>
 		options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
 	builder.Services.AddTransient<UserService>();
 	builder.Services.AddTransient<IPersonService, PersonService>();
 	builder.Services.AddTransient<ICustomerService, CustomerService>();
 	builder.Services.AddTransient<IUserService, UserService>();
 	builder.Services.AddTransient<IAccessService, AccessService>();
+	builder.Services.AddTransient<ITokenService, TokenService>();
+	builder.Services.AddScoped<IPasswordHashService, PasswordHashService>();
+
 
 	builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 	builder.Services.AddTransient<IUserRepository, UserRepository>();
 	builder.Services.AddTransient<IPersonRepository, PersonRepository>();
 	builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 	builder.Services.AddTransient<IAccessRepository, AccessRepository>();
+}
+
+void ConfigureAuthentication(WebApplicationBuilder builder) {
+	var key = Encoding.ASCII.GetBytes(Configuration.JwtKey);
+	builder.Services.AddAuthentication(x => {
+		x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+		x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+	}).AddJwtBearer(x => {
+		x.TokenValidationParameters = new TokenValidationParameters {
+			ValidateIssuerSigningKey = true,
+			IssuerSigningKey = new SymmetricSecurityKey(key),
+			ValidateIssuer = false,
+			ValidateAudience = false
+		};
+	});
+}
+
+void LoadConfiguration(WebApplication app) {
+	Configuration.JwtKey = app.Configuration.GetValue<string>("JwtKey")!;
 }
