@@ -17,14 +17,14 @@ public class TokenService : ITokenService{
 		_context = context;
 	}
 
-	public async Task<ResultViewModel<string>> GenerateToken(User user) {
+	public async Task<ResultViewModel<JwtViewModel>> GenerateToken(User user) {
 		var userDb = await _context
 			.Users
 			.AsNoTracking()
 			.Include(x => x.FromAccess)
 			.FirstOrDefaultAsync();
 
-		if(userDb == null) return new ResultViewModel<string>("Error in pushing user from database");
+		if(userDb == null) return new ResultViewModel<JwtViewModel>("Error in pushing user from database");
 
 		var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -41,6 +41,7 @@ public class TokenService : ITokenService{
 			SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
 		};
 		var token = tokenHandler.CreateToken(tokenDescriptor);
-		return (new ResultViewModel<string>(tokenHandler.WriteToken(token)));
+		var tokenGerado = tokenHandler.WriteToken(token);
+		return (new ResultViewModel<JwtViewModel>(tokenGerado));
 	}
 }
