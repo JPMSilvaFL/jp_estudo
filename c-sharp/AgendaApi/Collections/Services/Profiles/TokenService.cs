@@ -42,6 +42,7 @@ public class TokenService : ITokenService{
 		};
 		var token = tokenHandler.CreateToken(tokenDescriptor);
 		var tokenGerado = tokenHandler.WriteToken(token);
-		return (new ResultViewModel<JwtViewModel>(tokenGerado));
+		var tokenObj = new JwtViewModel(tokenGerado);
+		return (new ResultViewModel<JwtViewModel>(tokenObj));
 	}
 }

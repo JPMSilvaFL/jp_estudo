@@ -23,7 +23,7 @@ ConfigureServices(builder);
 var app = builder.Build();
 
 LoadConfiguration(app);
-
+app.UseCors("MyCorsPolicy");
 app.MapControllers();
 app.UseHttpsRedirection();
 app.Run();
@@ -40,6 +40,21 @@ void ConfigureMvc(WebApplicationBuilder builder) {
 }
 
 void ConfigureServices(WebApplicationBuilder builder) {
+
+	builder.Services.AddCors(options =>
+	{
+		options.AddPolicy("MyCorsPolicy", // Nome da política
+			policy =>
+			{
+				policy.WithOrigins("http://localhost:5173"); // Origens permitidas
+				policy.WithMethods("GET", "POST", "PUT", "DELETE"); // Métodos HTTP permitidos
+				policy.WithHeaders("Content-Type", "Authorization"); // Headers permitidos
+				policy.AllowAnyOrigin(); // Permite todas as origens (não recomendado para produção)
+				policy.AllowAnyMethod(); // Permite todos os métodos (não recomendado para produção)
+				policy.AllowAnyHeader(); // Permite todos os headers (não recomendado para produção)
+				policy.AllowCredentials(); // Permite credenciais (cookies, autenticação)
+			});
+	});
 
 	builder.Services.AddDbContext<AgendaDbContext>(options =>
 		options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
