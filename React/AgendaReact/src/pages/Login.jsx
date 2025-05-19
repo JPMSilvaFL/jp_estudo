@@ -1,36 +1,16 @@
-import { Button , Input } from "@mantine/core";
-import {Token_request} from "../hooks/api.jsx";
-import useForm from "./../hooks/useForm.jsx";
+import style from "../components/Form.module.css";
+import {ButtonForm, InputForm} from "../components/FormLogin.jsx";
+import {Center, Stack} from "@mantine/core";
 
 function Login() {
-
-    const username = useForm();
-    const password = useForm();
-
-    async function HandleSubmit(e) {
-        e.preventDefault();
-
-        if(username.validate() && password.validate()) {
-            const {url, options} = Token_request({
-                username: username.value,
-                password: password.value
-                }
-            )
-
-            const response = await fetch(url, options);
-            const json = await response.json();
-            const token = json.token;
-            console.log(token);
-        }
-
-    }
-
     return (
-        <div>
-            <form onSubmit={HandleSubmit}>
-                <Input name="username" placeholder="Username" type="text" {...username}/>
-                <Input name="password" placeholder="Password" type="password" {...password}/>
-                <Button>Login</Button>
+        <div className={style.containerForm}>
+            <form className={style.form}>
+                <InputForm placeholder="Username"/>
+                <InputForm placeholder="Password" type="password"/>
+                <ButtonForm label="Login" className={style.buttonFormLogin}/>
+                <p className={style.formRegister}><a>Cadastre-se</a></p>
+                <p className={style.formForgot}>Esqueceu sua senha?</p>
             </form>
         </div>
     )

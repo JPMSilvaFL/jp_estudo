@@ -1,0 +1,10 @@
+.formLogin{
+    width: fit-content;
+    padding: 1rem 2rem;
+    display: inline-block;
+    margin: auto;
+}
+
+.inputForm{
+    margin: 3rem 0;
+}
