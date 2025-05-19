@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 export const GlobalContext = React.createContext();
 
 export const GlobalStorage = ({children} ) => {
-    return <GlobalContext.Provider value={{token: null}}>{ children }</GlobalContext.Provider>;
+    const [authentication, setAuthentication] = useState(null);
+
+    return <GlobalContext.Provider value={{authentication, setAuthentication}}>{ children }</GlobalContext.Provider>;
 }
 

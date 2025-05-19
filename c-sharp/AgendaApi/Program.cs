@@ -49,9 +49,9 @@ void ConfigureServices(WebApplicationBuilder builder) {
 				policy.WithOrigins("http://localhost:5173"); // Origens permitidas
 				policy.WithMethods("GET", "POST", "PUT", "DELETE"); // Métodos HTTP permitidos
 				policy.WithHeaders("Content-Type", "Authorization"); // Headers permitidos
-				policy.AllowAnyOrigin(); // Permite todas as origens (não recomendado para produção)
-				policy.AllowAnyMethod(); // Permite todos os métodos (não recomendado para produção)
-				policy.AllowAnyHeader(); // Permite todos os headers (não recomendado para produção)
+				// policy.AllowAnyOrigin(); // Permite todas as origens (não recomendado para produção)
+				// policy.AllowAnyMethod(); // Permite todos os métodos (não recomendado para produção)
+				// policy.AllowAnyHeader(); // Permite todos os headers (não recomendado para produção)
 				policy.AllowCredentials(); // Permite credenciais (cookies, autenticação)
 			});
 	});

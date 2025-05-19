@@ -1,19 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { GlobalContext} from "../store/GlobalContext.jsx";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import Nav from "../components/Nav.jsx";
 
 
 const Home = () => {
-    //
-    // const {token} = React.useContext(GlobalContext);
-    //
-    // useEffect(() => {
-    //     if (!token) {
-    //         window.location.href = "/login";
-    //     }
-    // }, [token]);
-    //
+
+    const {authentication} = React.useContext(GlobalContext);
+
+    useEffect(() => {
+        console.log(authentication);
+        if (!authentication) {
+            window.location.href = "/login";
+        }
+    }, [authentication]);
+
     return (
         <>
             <Nav color="cyan"/>

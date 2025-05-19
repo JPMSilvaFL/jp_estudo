@@ -13,7 +13,7 @@ function App() {
           <BrowserRouter>
               <GlobalStorage>
                   <Routes>
-                      <Route path="/login/*" element={<Login />} />
+                      <Route path="/login" element={<Login />} />
                       <Route path="/*" element={<Home />} />
                   </Routes>
               </GlobalStorage>
