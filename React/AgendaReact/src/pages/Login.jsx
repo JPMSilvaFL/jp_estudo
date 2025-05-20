@@ -3,11 +3,12 @@ import {ButtonForm, InputForm} from "../components/FormLogin.jsx";
 import React, {useState} from "react";
 import {GlobalContext} from "../store/GlobalContext.jsx";
 import { useNavigate } from "react-router-dom";
+import RegisterModal from "../components/RegisterModal.jsx";
 
 
 function Login() {
     const navigate = useNavigate();
-    const {authentication, setAuthentication} = React.useContext(GlobalContext);
+    const {setAuthentication} = React.useContext(GlobalContext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -44,7 +45,7 @@ function Login() {
                 <InputForm placeholder="Username" onHandleChange={setUsername}/>
                 <InputForm placeholder="Password" type="password" onHandleChange={setPassword}/>
                 <ButtonForm type="submit" label="Login" className={style.buttonFormLogin}/>
-                <p className={style.formRegister}><a>Cadastre-se</a></p>
+                <p className={style.formRegister}><RegisterModal /></p>
                 <p className={style.formForgot}>Esqueceu sua senha?</p>
             </form>
         </div>

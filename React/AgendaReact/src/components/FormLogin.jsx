@@ -7,7 +7,7 @@ export function ButtonForm({label, type}){
         <Button variant="outline" size="md" color="cyan" type={type}>{label}</Button>
     )
 }
-export function InputForm({placeholder, type, onHandleChange: onValueChange}){
+export function InputForm({placeholder, type,label, onHandleChange: onValueChange}){
     const [value, setValue] = useState("");
 
     const HandleChange = (e) =>{
@@ -16,13 +16,16 @@ export function InputForm({placeholder, type, onHandleChange: onValueChange}){
     }
 
     return(
-        <Input className={style.inputForm}
-               placeholder={placeholder}
-               type={type}
-               variant="filled"
-               color="cyan"
-               value={value}
-               onChange={HandleChange}>
-        </Input>
+        <Input.Wrapper label={label}>
+            <Input className={style.inputForm}
+                   placeholder={placeholder}
+                   type={type}
+                   variant="filled"
+                   color="cyan"
+                   value={value}
+                   label={label}
+                   onChange={HandleChange}>
+            </Input>
+        </Input.Wrapper>
     )
 }
