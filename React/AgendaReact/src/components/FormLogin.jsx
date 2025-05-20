@@ -9,9 +9,11 @@ export function ButtonForm({label, type}){
 }
 export function InputForm({placeholder, type,label, onHandleChange: onValueChange}){
     const [value, setValue] = useState("");
+    const [errors, setErrors] = useState([]);
 
     const HandleChange = (e) =>{
         setValue(e.target.value);
+        setErrors([]);
         onValueChange(e.target.value);
     }
 

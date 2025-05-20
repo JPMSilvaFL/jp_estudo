@@ -13,7 +13,7 @@ function RegisterModal() {
     const [phone, setPhone] = useState("");
     const [cpf, setCpf] = useState("");
     const [address, setAddress] = useState("");
-
+    const [errors, setErrors] = useState([])
 
 
     const HandleSubmit = (e) =>{
@@ -27,7 +27,10 @@ function RegisterModal() {
         <>
             <Modal opened={opened} onClose={close} title="Register">
                 <form onSubmit={HandleSubmit}>
-                    <InputForm placeholder="Username" label="Username" onHandleChange={setUsername}/>
+                    <InputForm placeholder="Username" label="Username"
+                               onHandleChange={(value) => {
+                                   setUsername(value);
+                                   setErrors([])}}/>
                     <InputForm placeholder="Password" type="password" label="Password" onHandleChange={setPassword}/>
                     <InputForm placeholder="Confirm Password" type="password" label="Confirm Password" onHandleChange={setConfirmPassword}/>
                     <InputForm placeholder="Full Name" label="Full Name" onHandleChange={setFullName}/>
