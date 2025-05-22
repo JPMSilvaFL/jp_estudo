@@ -8,7 +8,7 @@ public class UserViewModel {
 	public string Username { get; set; } = null!;
 
 	[Required(ErrorMessage = "Password is required")]
-	[Length(9,99, ErrorMessage = "Password must be between 6 and 50 characters")]
+	[Length(9,50, ErrorMessage = "Password must be between 9 and 50 characters")]
 	public string Password { get; set; } = null!;
 
 	[Required(ErrorMessage = "Access is required")]
