@@ -52,4 +52,12 @@ public class UserService : IUserService{
 	public async Task<User> HandleGetUser(string username) {
 		return await _userRepository.GetUser(username);
 	}
+
+	public async Task<bool> HandleValidUsername(NewPasswordViewModel model) {
+		return await _userRepository.ValidUserByUsername(model.Username);
+	}
+
+	public async Task<bool> HandleUpdatePassword(string username, string password) {
+		return await _userRepository.UpdatePassword(username, password);
+	}
 }
